@@ -67,43 +67,61 @@ body {
 .envelope-card { text-align: center; cursor: pointer; }
 .script-heading { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 25px; }
 
-/* Floating Envelope Animation & Floral Styling */
+/* Gentle Floating Envelope Assembly */
 .floating-wrapper {
   position: relative;
   width: 260px;
   margin: 0 auto;
-  animation: floatEnvelope 3s ease-in-out infinite;
+  animation: floatEnvelope 3.5s ease-in-out infinite;
 }
 
 @keyframes floatEnvelope {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-10px) rotate(0.5deg);
   }
 }
 
-/* Background Lilies & Florals Behind Envelope */
-.floral-bg {
+/* Lily Floral Styling & Swaying Animation */
+.lily-stem {
   position: absolute;
-  font-size: 2.5rem;
+  width: 80px;
+  height: 120px;
   z-index: 0;
-  opacity: 0.85;
+  transform-origin: bottom center;
 }
 
-.floral-left {
-  top: -15px;
-  left: 10px;
-  transform: rotate(-20deg);
+.lily-left {
+  top: -55px;
+  left: -20px;
+  animation: swayLilyLeft 4s ease-in-out infinite alternate;
 }
 
-.floral-right {
-  top: -20px;
-  right: 10px;
-  transform: rotate(20deg);
+.lily-right {
+  top: -60px;
+  right: -20px;
+  animation: swayLilyRight 4.5s ease-in-out infinite alternate;
 }
 
+.flower-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.05));
+}
+
+@keyframes swayLilyLeft {
+  0% { transform: rotate(-15deg) scale(0.95); }
+  100% { transform: rotate(-5deg) scale(1.05); }
+}
+
+@keyframes swayLilyRight {
+  0% { transform: rotate(15deg) scale(1.05); }
+  100% { transform: rotate(5deg) scale(0.95); }
+}
+
+/* Main Envelope Structure */
 .envelope-container {
   width: 220px;
   height: 150px;
