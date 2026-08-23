@@ -92,18 +92,76 @@
         </section>
 
         <!-- Interactive Gift Menu Section -->
-        <section class="gift-menu-section">
-          <h2>Gifts Just For You!</h2>
-          <div class="gift-items-container">
-            
-            <div class="gift-items-container">
-  <div class="gift-card" id="memories-modal-trigger">
-    <div class="gift-icon-wrapper">📷</div>
-    <div class="gift-label">memories</div>
+       <section class="gift-menu-section">
+  <h2>Gifts Just For You!</h2>
+  <div class="gift-items-container">
+    <div class="gift-card" id="memories-modal-trigger">
+      <div class="gift-icon-wrapper">
+        <span>📸</span>
+      </div>
+      <div class="gift-label">memories</div>
+    </div>
+
+    <div class="gift-card" id="cake-modal-trigger">
+      <div class="gift-icon-wrapper">
+        <span>🎂</span>
+      </div>
+      <div class="gift-label">cake</div>
+    </div>
+
+    <div class="gift-card" id="flowers-modal-trigger">
+      <div class="gift-icon-wrapper">
+        <span>🎁</span>
+      </div>
+      <div class="gift-label">surprise</div>
+    </div>
+  </div>
+</section>
+
+        <!-- Vinyl Record & Gallery Grid -->
+        <section class="message-vinyl-section">
+          <div class="message-container">
+            <div class="text-side">
+              <h2>Message For You</h2>
+              <p>You bring so much light and joy into my world. No distance can change how special you are to me.</p>
+            </div>
+            <div class="vinyl-side">
+              <a href="https://open.spotify.com/playlist/2Jd43zQsEDWJMNxl2MeDFw?si=4pC_6lo_RpiHXPmawpgThA&utm_source=copy-link" target="_blank" title="Click to open our Spotify Playlist!">
+                <div class="vinyl-disc">
+                  <div class="vinyl-center"></div>
+                  <span class="vinyl-label-text">67 😝</span>
+                </div>
+              </a>
+              <p class="vinyl-hint">🎵 click vinyl to play our playlist</p>
+            </div>
+          </div>
+
+          <div class="photo-polaroids-grid">
+            <div class="polaroid-card"><img src="images/photo1.jpg" alt="Gallery" /><span class="tag">soulmates</span></div>
+            <div class="polaroid-card"><img src="images/photo2.jpg" alt="Gallery" /><span class="tag">my favorite</span></div>
+            <div class="polaroid-card"><img src="images/photo3.jpg" alt="Gallery" /><span class="tag">memories</span></div>
+          </div>
+        </section>
+
+      </main>
+    </div>
   </div>
 
-            <!-- Cake Gift -->
-            <!-- MODAL 2: SHAKE SHACK FEAST (BURGER, FRIES, DRINK) -->
+  <!-- MODAL 1: MEMORIES PHOTO ALBUM -->
+  <div id="memories-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <span class="close-modal" id="close-memories">&times;</span>
+      <h3 class="cursive-heading">Our Favorite Moments 📷</h3>
+      <div class="modal-photo-grid">
+        <img src="images/photo1.jpg" alt="Memory 1" />
+        <img src="images/photo2.jpg" alt="Memory 2" />
+        <img src="images/photo3.jpg" alt="Memory 3" />
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- MODAL 2: SHAKE SHACK FEAST (BURGER, FRIES, DRINK) -->
 <div id="cake-modal" class="modal-overlay hidden">
   <div class="modal-box shack-modal-box">
     <span class="close-modal" id="close-cake">&times;</span>
@@ -193,73 +251,6 @@
   </div>
 </div>
 
-            <div class="gift-card" id="flowers-modal-trigger">
-    <div class="gift-icon-wrapper">🎁</div>
-    <div class="gift-label">surprise</div>
-  </div>
-</div>
-
-          </div>
-        </section>
-
-        <!-- Vinyl Record & Gallery Grid -->
-        <section class="message-vinyl-section">
-          <div class="message-container">
-            <div class="text-side">
-              <h2>Message For You</h2>
-              <p>You bring so much light and joy into my world. No distance can change how special you are to me.</p>
-            </div>
-            <div class="vinyl-side">
-              <a href="https://open.spotify.com/playlist/2Jd43zQsEDWJMNxl2MeDFw?si=4pC_6lo_RpiHXPmawpgThA&utm_source=copy-link" target="_blank" title="Click to open our Spotify Playlist!">
-                <div class="vinyl-disc">
-                  <div class="vinyl-center"></div>
-                </div>
-              </a>
-              <p class="vinyl-hint">🎵 click vinyl to play our playlist</p>
-            </div>
-          </div>
-
-          <div class="photo-polaroids-grid">
-            <div class="polaroid-card"><img src="images/photo1.jpg" alt="Gallery" /><span class="tag">soulmates</span></div>
-            <div class="polaroid-card"><img src="images/photo2.jpg" alt="Gallery" /><span class="tag">my favorite</span></div>
-            <div class="polaroid-card"><img src="images/photo3.jpg" alt="Gallery" /><span class="tag">memories</span></div>
-          </div>
-        </section>
-
-      </main>
-    </div>
-  </div>
-
-  <!-- MODAL 1: MEMORIES PHOTO ALBUM -->
-  <div id="memories-modal" class="modal-overlay hidden">
-    <div class="modal-box">
-      <span class="close-modal" id="close-memories">&times;</span>
-      <h3 class="cursive-heading">Our Favorite Moments 📷</h3>
-      <div class="modal-photo-grid">
-        <img src="images/photo1.jpg" alt="Memory 1" />
-        <img src="images/photo2.jpg" alt="Memory 2" />
-        <img src="images/photo3.jpg" alt="Memory 3" />
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL 2: INTERACTIVE CAKE EATING -->
-  <div id="cake-modal" class="modal-overlay hidden">
-    <div class="modal-box">
-      <span class="close-modal" id="close-cake">&times;</span>
-      <h3 class="cursive-heading">Click the cake to eat it! 🍰</h3>
-      <div id="cake-container" class="interactive-cake">
-        <svg id="cake-svg" viewBox="0 0 200 150" width="220" height="170">
-          <path id="slice-4" class="cake-slice" d="M 100,50 L 180,90 L 100,130 Z" fill="#f7a8b8" stroke="#ffffff" stroke-width="2"/>
-          <path id="slice-3" class="cake-slice" d="M 100,50 L 100,130 L 20,90 Z" fill="#f48fb1" stroke="#ffffff" stroke-width="2"/>
-          <path id="slice-2" class="cake-slice" d="M 100,50 L 140,20 L 180,90 Z" fill="#f06292" stroke="#ffffff" stroke-width="2"/>
-          <path id="slice-1" class="cake-slice" d="M 100,50 L 20,90 L 60,20 Z" fill="#e91e63" stroke="#ffffff" stroke-width="2"/>
-          <circle cx="100" cy="50" r="10" fill="#d32f2f" />
-        </svg>
-      </div>
-      <p id="cake-status-text" class="status-hint">4 slices remaining...</p>
-    </div>
-  </div>
 
   <!-- MODAL 3: SURPRISE FLOWER BOUQUET & FLIPPING POLAROID -->
   <div id="flowers-modal" class="modal-overlay hidden">
