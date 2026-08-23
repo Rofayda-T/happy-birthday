@@ -34,50 +34,43 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2. LIVE LYRICS SYNCHRONIZATION LOGIC
   // ==========================================
   const lyricLines = document.querySelectorAll(".lyric-line");
+  const lyricsScreen = document.getElementById("lyrics-screen");
+  let currentActiveIndex = -1;
 
-  // This part is crucial for syncing the audio to the text
-  if (bgMusic && lyricLines.length > 0) {
+  if (bgMusic && lyricLines.length > 0 && lyricsScreen) {
     bgMusic.addEventListener("timeupdate", () => {
       const currentTime = bgMusic.currentTime;
-      const audio = document.getElementById('bg-music');
-const lyricLines = document.querySelectorAll('.lyric-line');
-const lyricsScreen = document.getElementById('lyrics-screen');
+      let activeIndex = -1;
 
-let currentActiveIndex = -1;
+      // Find the current lyric line based on timestamp
+      lyricLines.forEach((line, index) => {
+        const time = parseFloat(line.getAttribute("data-time"));
+        if (currentTime >= time) {
+          activeIndex = index;
+        }
+      });
 
-audio.addEventListener('timeupdate', () => {
-  const currentTime = audio.currentTime;
-  let activeIndex = -1;
+      // ONLY trigger scroll inside the lyrics box if active line changes
+      if (activeIndex !== -1 && activeIndex !== currentActiveIndex) {
+        currentActiveIndex = activeIndex;
 
-  // Find the current lyric line based on timestamp
-  lyricLines.forEach((line, index) => {
-    const time = parseFloat(line.getAttribute('data-time'));
-    if (currentTime >= time) {
-      activeIndex = index;
-    }
-  });
+        // Remove active class from all lines
+        lyricLines.forEach((line) => line.classList.remove("active"));
 
-  // ONLY trigger scroll if the active line has actually changed
-  if (activeIndex !== -1 && activeIndex !== currentActiveIndex) {
-    currentActiveIndex = activeIndex;
+        // Highlight current line
+        const activeLine = lyricLines[activeIndex];
+        activeLine.classList.add("active");
 
-    // Remove active class from all lines
-    lyricLines.forEach(line => line.classList.remove('active'));
+        // Scroll inside lyrics container without stealing page scroll
+        const containerTop = lyricsScreen.offsetTop;
+        const lineTop = activeLine.offsetTop;
 
-    // Highlight current line
-    const activeLine = lyricLines[activeIndex];
-    activeLine.classList.add('active');
-
-    // Smoothly scroll inside the lyrics container only
-    const containerTop = lyricsScreen.offsetTop;
-    const lineTop = activeLine.offsetTop;
-    
-    lyricsScreen.scrollTo({
-      top: lineTop - containerTop - 40, // Keeps current line centered
-      behavior: 'smooth'
+        lyricsScreen.scrollTo({
+          top: lineTop - containerTop - 40,
+          behavior: "smooth"
+        });
+      }
     });
-  }
-});
   }
 
   // ==========================================
