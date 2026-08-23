@@ -1,19 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   const bgMusic = document.getElementById("bg-music");
 
-  // SECTION NAVIGATION: Envelope Cover -> Main Content Reveal
+  // ==========================================
+  // 1. ENVELOPE OPEN & MAIN SCREEN REVEAL
+  // ==========================================
   const envelopeScreen = document.getElementById("envelope-screen");
   const openEnvelopeBtn = document.getElementById("open-envelope-btn");
   const mainContent = document.getElementById("main-content");
 
   if (openEnvelopeBtn) {
     openEnvelopeBtn.addEventListener("click", () => {
-      // Play Background Audio
       if (bgMusic) {
-        bgMusic.play().catch(() => console.log("Audio autoplay restriction handled"));
+        bgMusic.play().catch(() => console.log("Audio autoplay policy managed"));
       }
 
-      // Trigger Confetti
       if (typeof confetti === "function") {
         confetti({
           particleCount: 100,
@@ -22,88 +22,122 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      // Reveal main page directly
       envelopeScreen.classList.add("hidden");
       mainContent.classList.remove("hidden");
     });
   }
 
-  // MODAL 1: MEMORIES PHOTO ALBUM LOGIC
+  // ==========================================
+  // 2. LIVE LYRICS SYNCHRONIZATION LOGIC
+  // ==========================================
+  const lyricLines = document.querySelectorAll(".lyric-line");
+
+  if (bgMusic && lyricLines.length > 0) {
+    bgMusic.addEventListener("timeupdate", () => {
+      const currentTime = bgMusic.currentTime;
+      let activeIndex = -1;
+
+      lyricLines.forEach((line, index) => {
+        const lineTime = parseFloat(line.getAttribute("data-time"));
+        if (currentTime >= lineTime) {
+          activeIndex = index;
+        }
+      });
+
+      lyricLines.forEach((line, index) => {
+        if (index === activeIndex) {
+          line.classList.add("active");
+          line.scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          line.classList.remove("active");
+        }
+      });
+    });
+  }
+
+  // ==========================================
+  // 3. MODAL 1: MEMORIES PHOTO ALBUM
+  // ==========================================
   const memoriesTrigger = document.getElementById("memories-modal-trigger");
   const memoriesModal = document.getElementById("memories-modal");
   const closeMemories = document.getElementById("close-memories");
 
-  if (memoriesTrigger) {
+  if (memoriesTrigger && memoriesModal) {
     memoriesTrigger.addEventListener("click", () => memoriesModal.classList.remove("hidden"));
   }
-  if (closeMemories) {
+  if (closeMemories && memoriesModal) {
     closeMemories.addEventListener("click", () => memoriesModal.classList.add("hidden"));
   }
 
-  // MODAL 2: INTERACTIVE SHAKE SHACK FEAST LOGIC (BURGER, FRIES, DRINK)
-  const cakeTrigger = document.getElementById("cake-modal-trigger");
+  // ==========================================
+  // 4. MODAL 2: SHAKE SHACK FEAST LOGIC
+  // ==========================================
+  const shakeShackBtn = document.getElementById("cake-modal-trigger");
   const cakeModal = document.getElementById("cake-modal");
   const closeCake = document.getElementById("close-cake");
+  const burgerBites = document.querySelectorAll(".burger-bite");
+  const fryBatches = document.querySelectorAll(".fry-batch");
+  const sipLayers = document.querySelectorAll(".sip-layer");
+  const burgerStatus = document.getElementById("burger-status");
+  const friesStatus = document.getElementById("fries-status");
+  const drinkStatus = document.getElementById("drink-status");
 
-  if (cakeTrigger) {
-    cakeTrigger.addEventListener("click", () => cakeModal.classList.remove("hidden"));
+  let burgerCount = burgerBites.length;
+  let friesCount = fryBatches.length;
+  let drinkCount = sipLayers.length;
+
+  if (shakeShackBtn && cakeModal) {
+    shakeShackBtn.addEventListener("click", () => cakeModal.classList.remove("hidden"));
   }
-  if (closeCake) {
+  if (closeCake && cakeModal) {
     closeCake.addEventListener("click", () => cakeModal.classList.add("hidden"));
   }
 
-  // 1. ShackBurger Bite Logic
-  const burgerBites = document.querySelectorAll(".burger-bite");
-  const burgerStatus = document.getElementById("burger-status");
-  let burgerCount = burgerBites.length;
-
-  burgerBites.forEach((bite) => {
-    bite.addEventListener("click", () => {
-      if (bite.style.display !== "none") {
-        bite.style.display = "none";
-        burgerCount--;
-        if (burgerStatus) {
-          burgerStatus.textContent = burgerCount > 0 ? `${burgerCount} bites left` : "Burger finished! 😋";
+  if (burgerBites) {
+    burgerBites.forEach((bite) => {
+      bite.addEventListener("click", (e) => {
+        if (e.target.style.display !== "none") {
+          e.target.style.display = "none";
+          burgerCount--;
+          if (burgerStatus) {
+            burgerStatus.textContent = burgerCount > 0 ? `${burgerCount} bites left` : "Burger finished! 😋";
+          }
         }
-      }
+      });
     });
-  });
+  }
 
-  // 2. Crinkle Fries Logic
-  const fryBatches = document.querySelectorAll(".fry-batch");
-  const friesStatus = document.getElementById("fries-status");
-  let friesCount = fryBatches.length;
-
-  fryBatches.forEach((batch) => {
-    batch.addEventListener("click", () => {
-      if (batch.style.display !== "none") {
-        batch.style.display = "none";
-        friesCount--;
-        if (friesStatus) {
-          friesStatus.textContent = friesCount > 0 ? `${friesCount} handfuls left` : "Fries all gone! 🍟";
+  if (fryBatches) {
+    fryBatches.forEach((batch) => {
+      batch.addEventListener("click", (e) => {
+        if (e.target.style.display !== "none") {
+          e.target.style.display = "none";
+          friesCount--;
+          if (friesStatus) {
+            friesStatus.textContent = friesCount > 0 ? `${friesCount} handfuls left` : "Fries all gone! 🍟";
+          }
         }
-      }
+      });
     });
-  });
+  }
 
-  // 3. Shake Drink Sip Logic
-  const sipLayers = document.querySelectorAll(".sip-layer");
-  const drinkStatus = document.getElementById("drink-status");
-  let drinkCount = sipLayers.length;
-
-  sipLayers.forEach((layer) => {
-    layer.addEventListener("click", () => {
-      if (layer.style.display !== "none") {
-        layer.style.display = "none";
-        drinkCount--;
-        if (drinkStatus) {
-          drinkStatus.textContent = drinkCount > 0 ? `${drinkCount} sips left` : "Empty cup! 🥤";
+  if (sipLayers) {
+    sipLayers.forEach((layer) => {
+      layer.addEventListener("click", (e) => {
+        if (e.target.style.display !== "none") {
+          e.target.style.display = "none";
+          drinkCount--;
+          if (drinkStatus) {
+            drinkStatus.textContent = drinkCount > 0 ? `${drinkCount} sips left` : "Cup empty! 🥤";
+          }
         }
-      }
+      });
     });
-  });
+  }
 
-  // MODAL 3: SURPRISE FLOWER BOUQUET & FLIPPING POLAROID LOGIC
+  // ==========================================
+  // 5. MODAL 3: BOUQUET & POLAROID LOGIC
+  // ==========================================
   const flowersTrigger = document.getElementById("flowers-modal-trigger");
   const flowersModal = document.getElementById("flowers-modal");
   const closeFlowers = document.getElementById("close-flowers");
@@ -114,35 +148,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const polaroidDate = document.getElementById("polaroid-date");
   const polaroidMsg = document.getElementById("polaroid-msg");
 
-  if (flowersTrigger) {
+  if (flowersTrigger && flowersModal) {
     flowersTrigger.addEventListener("click", () => flowersModal.classList.remove("hidden"));
   }
-  if (closeFlowers) {
+  if (closeFlowers && flowersModal) {
     closeFlowers.addEventListener("click", () => flowersModal.classList.add("hidden"));
   }
 
-  flowers.forEach((flower) => {
-    flower.addEventListener("click", () => {
-      const photo = flower.getAttribute("data-photo");
-      const date = flower.getAttribute("data-date");
-      const msg = flower.getAttribute("data-msg");
+  if (flowers && flowers.length > 0) {
+    flowers.forEach((flower) => {
+      flower.addEventListener("click", () => {
+        if (polaroidImg) polaroidImg.src = flower.getAttribute("data-photo");
+        if (polaroidDate) polaroidDate.textContent = flower.getAttribute("data-date");
+        if (polaroidMsg) polaroidMsg.textContent = flower.getAttribute("data-msg");
 
-      if (polaroidImg) polaroidImg.src = photo;
-      if (polaroidDate) polaroidDate.textContent = date;
-      if (polaroidMsg) polaroidMsg.textContent = msg;
-
-      if (polaroidCard) polaroidCard.classList.remove("flipped");
-      if (polaroidWrapper) polaroidWrapper.classList.remove("hidden");
-    });
-  });
-
-  if (polaroidWrapper) {
-    polaroidWrapper.addEventListener("click", () => {
-      if (polaroidCard) polaroidCard.classList.toggle("flipped");
+        if (polaroidCard) polaroidCard.classList.remove("flipped");
+        if (polaroidWrapper) polaroidWrapper.classList.remove("hidden");
+      });
     });
   }
 
-  // MODAL 4: VINTAGE CAMERA & VIDEO LOGIC
+  if (polaroidWrapper && polaroidCard) {
+    polaroidWrapper.addEventListener("click", () => polaroidCard.classList.toggle("flipped"));
+  }
+
+  // ==========================================
+  // 6. MODAL 4: VINTAGE CAMERA & VIDEO LOGIC
+  // ==========================================
   const cameraTrigger = document.getElementById("camera-modal-trigger");
   const cameraModal = document.getElementById("camera-modal");
   const closeCamera = document.getElementById("close-camera");
@@ -151,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const videoFrame = document.getElementById("video-display-frame");
   const cameraVideo = document.getElementById("camera-video");
 
-  if (cameraTrigger) {
+  if (cameraTrigger && cameraModal) {
     cameraTrigger.addEventListener("click", () => {
       cameraModal.classList.remove("hidden");
       if (cameraBody) cameraBody.classList.remove("hidden");
@@ -159,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (closeCamera) {
+  if (closeCamera && cameraModal) {
     closeCamera.addEventListener("click", () => {
       cameraModal.classList.add("hidden");
       if (cameraVideo) cameraVideo.pause();
