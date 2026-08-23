@@ -10,10 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (openEnvelopeBtn) {
     openEnvelopeBtn.addEventListener("click", () => {
+      // Play Background Audio
       if (bgMusic) {
-        bgMusic.play().catch(() => console.log("Audio autoplay policy managed"));
+        bgMusic.play().catch(() => console.log("Audio autoplay restriction handled"));
       }
 
+      // Trigger Confetti
       if (typeof confetti === "function") {
         confetti({
           particleCount: 100,
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
+      // Hide Envelope, Reveal Main Site
       envelopeScreen.classList.add("hidden");
       mainContent.classList.remove("hidden");
     });
@@ -32,11 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   const lyricLines = document.querySelectorAll(".lyric-line");
 
+  // This part is crucial for syncing the audio to the text
   if (bgMusic && lyricLines.length > 0) {
     bgMusic.addEventListener("timeupdate", () => {
       const currentTime = bgMusic.currentTime;
       let activeIndex = -1;
 
+      // 1. Find the currently active lyric line
       lyricLines.forEach((line, index) => {
         const lineTime = parseFloat(line.getAttribute("data-time"));
         if (currentTime >= lineTime) {
@@ -44,9 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
+      // 2. Highlight active line and smoothly scroll
       lyricLines.forEach((line, index) => {
         if (index === activeIndex) {
           line.classList.add("active");
+          // Centers the active line in the screen
           line.scrollIntoView({ behavior: "smooth", block: "center" });
         } else {
           line.classList.remove("active");
@@ -70,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // 4. MODAL 2: SHAKE SHACK FEAST LOGIC
+  // 4. MODAL 2: SHAKE SHACK LOGIC
   // ==========================================
   const shakeShackBtn = document.getElementById("cake-modal-trigger");
   const cakeModal = document.getElementById("cake-modal");
