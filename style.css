@@ -258,22 +258,68 @@ body {
 .signature { margin-top: 15px; }
 .cursive-sign { font-family: 'Caveat', cursive; font-size: 1.5rem; }
 
-.ttt-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  background: var(--text-dark);
-  padding: 5px;
-  border-radius: 6px;
-  text-align: center;
-  color: white;
-  font-weight: bold;
+/* LIVE LYRICS SCREEN CONTAINER */
+.lyrics-card {
+  background: #2a2424;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #3d3333;
+  color: #fff;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
 }
 
-.ttt-grid span { background: var(--window-bg); color: var(--text-dark); padding: 10px; }
-.highlight-x { color: #e8a2a8 !important; }
-.mini-polaroid-stack img { width: 100%; border-radius: 8px; margin-top: 15px; }
-.polaroid-caption { font-family: 'Caveat', cursive; text-align: center; margin-top: 5px; }
+.lyrics-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #e8a2a8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.lyrics-screen {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 5px 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.lyrics-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.lyrics-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  padding: 60px 0;
+}
+
+.lyric-line {
+  font-size: 0.85rem;
+  color: #a89f9e;
+  transition: all 0.3s ease;
+  opacity: 0.4;
+  margin: 0;
+}
+
+.lyric-line.active {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  opacity: 1;
+  text-shadow: 0 0 8px rgba(232, 162, 168, 0.6);
+}
 
 /* Gift Menu */
 .gift-menu-section { text-align: center; margin-bottom: 50px; }
