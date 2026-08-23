@@ -1,40 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
   const bgMusic = document.getElementById("bg-music");
 
-  // SECTION NAVIGATION
+  // SECTION NAVIGATION: Envelope Cover -> Main Content Reveal
   const envelopeScreen = document.getElementById("envelope-screen");
   const openEnvelopeBtn = document.getElementById("open-envelope-btn");
-  const photoRevealScreen = document.getElementById("photo-reveal-screen");
-  const continueBtn = document.getElementById("continue-to-main-btn");
   const mainContent = document.getElementById("main-content");
 
-  // Step 1: Open Envelope -> Show Full Photo Reveal
   openEnvelopeBtn.addEventListener("click", () => {
-    // Play Background Music
+    // Play Background Audio
     if (bgMusic) {
-      bgMusic.play().catch(() => console.log("Audio autoplay restricted"));
+      bgMusic.play().catch(() => console.log("Audio autoplay restriction handled"));
     }
 
     // Trigger Confetti
     if (typeof confetti === "function") {
       confetti({
-        particleCount: 80,
-        spread: 70,
+        particleCount: 100,
+        spread: 80,
         origin: { y: 0.6 }
       });
     }
 
+    // Reveal main page directly
     envelopeScreen.classList.add("hidden");
-    photoRevealScreen.classList.remove("hidden");
-  });
-
-  // Step 2: Continue -> Show Main Content
-  continueBtn.addEventListener("click", () => {
-    photoRevealScreen.classList.add("hidden");
     mainContent.classList.remove("hidden");
   });
 
-  // CAKE MODAL LOGIC
+  // MODAL 1: MEMORIES PHOTO ALBUM LOGIC
+  const memoriesTrigger = document.getElementById("memories-modal-trigger");
+  const memoriesModal = document.getElementById("memories-modal");
+  const closeMemories = document.getElementById("close-memories");
+
+  if (memoriesTrigger) {
+    memoriesTrigger.addEventListener("click", () => memoriesModal.classList.remove("hidden"));
+  }
+  if (closeMemories) {
+    closeMemories.addEventListener("click", () => memoriesModal.classList.add("hidden"));
+  }
+
+  // MODAL 2: INTERACTIVE CAKE LOGIC
   const cakeTrigger = document.getElementById("cake-modal-trigger");
   const cakeModal = document.getElementById("cake-modal");
   const closeCake = document.getElementById("close-cake");
@@ -68,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // FLOWER BOUQUET & POLAROID FLIP LOGIC
+  // MODAL 3: SURPRISE FLOWER BOUQUET & FLIPPING POLAROID LOGIC
   const flowersTrigger = document.getElementById("flowers-modal-trigger");
   const flowersModal = document.getElementById("flowers-modal");
   const closeFlowers = document.getElementById("close-flowers");
@@ -96,13 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
       polaroidDate.textContent = date;
       polaroidMsg.textContent = msg;
 
-      // Reset Flip and Reveal Card
       polaroidCard.classList.remove("flipped");
       polaroidWrapper.classList.remove("hidden");
     });
   });
 
-  // Flip Polaroid Card
   if (polaroidWrapper) {
     polaroidWrapper.addEventListener("click", () => {
       polaroidCard.classList.toggle("flipped");
