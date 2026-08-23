@@ -170,6 +170,7 @@ body {
   object-fit: contain; /* Prevents cropping and fits the full image */
   border-radius: 4px;
 }
+
 .envelope-front {
   position: absolute;
   bottom: 0;
@@ -391,9 +392,54 @@ body {
 .modal-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
 .modal-photo-grid img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; }
 
-/* Cake Slices SVG */
-.cake-slice { cursor: pointer; transition: opacity 0.3s, transform 0.2s; }
-.cake-slice:hover { opacity: 0.8; transform: scale(1.02); }
+/* Shake Shack Modal Styling */
+.shack-modal-box {
+  max-width: 650px !important;
+}
+
+.shack-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.shack-item-card {
+  background: #fdfbf7;
+  border: 1px solid #efe5d8;
+  border-radius: 12px;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #2e7d32; /* Shake Shack Green */
+}
+
+.interactive-svg-wrapper {
+  cursor: pointer;
+  margin: 10px 0;
+  transition: transform 0.2s ease;
+}
+
+.interactive-svg-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.burger-bite, .fry-batch, .sip-layer {
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.item-status {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 .status-hint { font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; }
 
 /* Flower Bouquet */
