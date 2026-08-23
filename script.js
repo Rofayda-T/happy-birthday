@@ -1,15 +1,25 @@
-// Step 1: Open Envelope
+// Step 1: Open Envelope -> Play Song + Show "HAPPY 23RD BIRTHDAY JOUD" Reveal + Confetti
 document.getElementById('open-envelope-btn').addEventListener('click', function() {
   const audio = document.getElementById('bg-music');
-  audio.play().catch(err => console.log("Audio play blocked by browser:", err));
+  if (audio) {
+    audio.play().catch(err => console.log("Audio playback blocked by browser:", err));
+  }
 
+  // Hide envelope screen, show photo reveal screen
   document.getElementById('envelope-screen').classList.add('hidden');
-  document.getElementById('main-content').classList.remove('hidden');
+  document.getElementById('photo-reveal-screen').classList.remove('hidden');
 
-  confetti({ particleCount: 130, spread: 85, origin: { y: 0.6 } });
+  // Trigger Celebration Confetti
+  confetti({ particleCount: 140, spread: 90, origin: { y: 0.6 } });
 });
 
-// Step 2: Interactive Cake Eating Modal
+// Step 2: Continue Button -> Reveal Main Letter Page
+document.getElementById('continue-to-main-btn').addEventListener('click', function() {
+  document.getElementById('photo-reveal-screen').classList.add('hidden');
+  document.getElementById('main-content').classList.remove('hidden');
+});
+
+// Interactive Cake Eating Modal
 const cakeModal = document.getElementById('cake-modal');
 let slicesLeft = 4;
 
@@ -38,7 +48,7 @@ document.querySelectorAll('.cake-slice').forEach(slice => {
   });
 });
 
-// Step 3: Interactive Flowers & Flipping Polaroid Modal
+// Interactive Flowers & Flipping Polaroid Modal
 const flowersModal = document.getElementById('flowers-modal');
 const polaroidWrapper = document.getElementById('polaroid-wrapper');
 const polaroidCard = document.getElementById('polaroid-card');
