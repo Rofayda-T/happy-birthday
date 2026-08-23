@@ -149,13 +149,13 @@ body {
 
 .letter-inside {
   width: 85%;
-  height: 90%;
+  height: 95%; /* Increased height to accommodate taller photos */
   background: #ffffff;
   position: absolute;
-  top: 10%;
+  top: 5%;
   left: 7.5%;
   border-radius: 6px;
-  padding: 6px 6px 18px 6px; /* White polaroid border around photo */
+  padding: 6px 6px 14px 6px; /* Polaroid bottom border */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
@@ -163,13 +163,13 @@ body {
   align-items: center;
   z-index: 1;
 }
+
 .envelope-photo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Prevents cropping and fits the full image */
   border-radius: 4px;
 }
-
 .envelope-front {
   position: absolute;
   bottom: 0;
