@@ -26,19 +26,39 @@
 
     <div class="macbook-body">
 
-      <!-- STEP 1: INTERACTIVE ENVELOPE COVER -->
-      <section id="envelope-screen" class="screen-center">
-        <div class="envelope-card" id="open-envelope-btn">
-          <h2 class="script-heading">You got mail!</h2>
-          <div class="envelope-container">
-            <div class="envelope-back"></div>
-            <div class="letter-inside"><span class="heart-stamp">🌸</span></div>
-            <div class="envelope-front"></div>
-            <div class="envelope-flap"></div>
-          </div>
-          <p class="click-hint">click the envelope to open</p>
-        </div>
-      </section>
+     <!-- STEP 1: INTERACTIVE ENVELOPE COVER -->
+<section id="envelope-screen" class="screen-center">
+  <div class="envelope-card" id="open-envelope-btn">
+    <h2 class="script-heading">You got mail!</h2>
+    
+    <!-- Floating Wrapper for Bobbing Motion -->
+    <div class="floating-wrapper">
+      <!-- Lavender/Lily Florals Behind Envelope -->
+      <div class="floral-bg floral-left">💐</div>
+      <div class="floral-bg floral-right">🌸</div>
+
+      <div class="envelope-container">
+        <div class="envelope-back"></div>
+        <div class="letter-inside"><span class="heart-stamp">🩷</span></div>
+        <div class="envelope-front"></div>
+        <div class="envelope-flap"></div>
+      </div>
+    </div>
+
+    <p class="click-hint">click the envelope to open</p>
+  </div>
+</section>
+
+<!-- ENVELOPE OPEN REVEAL PHOTO SCREEN -->
+<section id="photo-reveal-screen" class="hidden">
+  <div class="hero-image-wrapper full-screen-hero">
+    <img src="images/photo1.jpg" alt="Joud Birthday" class="hero-img" />
+    <div class="hero-overlay">
+      <h1 class="birthday-text">HAPPY 23RD BIRTHDAY<br /><span class="cursive-text">Joud</span></h1>
+    </div>
+  </div>
+  <button id="continue-to-main-btn" class="continue-btn">Read Your Letter ↓</button>
+</section>
 
       <!-- STEP 2: MAIN WEBSITE CONTENT -->
       <main id="main-content" class="hidden">
