@@ -278,12 +278,17 @@ body {
 /* Gift Menu */
 .gift-menu-section { text-align: center; margin-bottom: 50px; }
 .gift-menu-section h2 { font-family: 'Playfair Display', serif; margin-bottom: 25px; }
-.gift-items-container { display: flex; justify-content: center; gap: 30px; }
+.gift-items-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
 
 .gift-card { text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.3s ease; }
 .gift-card:hover { transform: translateY(-8px); }
 .gift-icon-wrapper {
-  width: 90px; height: 90px;
+  width: 85px; height: 85px;
   background: white;
   border-radius: 50%;
   display: flex; justify-content: center; align-items: center;
@@ -373,7 +378,7 @@ body {
 }
 
 .modal-box {
-  background: white; width: 90%; max-width: 450px; padding: 30px;
+  background: white; width: 90%; max-width: 480px; padding: 30px;
   border-radius: 16px; position: relative; text-align: center;
   box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
@@ -389,9 +394,35 @@ body {
 .modal-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
 .modal-photo-grid img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; }
 
-/* Cake Slices SVG */
-.cake-slice { cursor: pointer; transition: opacity 0.3s, transform 0.2s; }
-.cake-slice:hover { opacity: 0.8; transform: scale(1.02); }
+/* Shake Shack Feast Modal */
+.shack-modal-box { max-width: 550px; }
+.shack-menu-grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.shack-item-card { text-align: center; flex: 1; }
+.item-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; }
+.interactive-svg-wrapper { display: inline-block; cursor: pointer; }
+
+.burger-bite, .fry-batch, .sip-layer {
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.burger-bite:hover, .fry-batch:hover, .sip-layer:hover {
+  opacity: 0.75;
+}
+
+.item-status {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
 .status-hint { font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; }
 
 /* Flower Bouquet */
@@ -417,3 +448,83 @@ body {
 .polaroid-back { transform: rotateY(180deg); justify-content: center; padding: 20px; }
 .polaroid-date-text { font-weight: bold; font-size: 0.9rem; color: #a85d65; margin-bottom: 10px; }
 .polaroid-msg-text { font-size: 0.85rem; line-height: 1.5; color: var(--text-dark); }
+
+/* Vintage Camera Styling & Flash Animation */
+.vintage-camera-body {
+  width: 180px;
+  height: 120px;
+  background: #333;
+  border-radius: 12px;
+  margin: 20px auto;
+  position: relative;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.camera-lens {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #222;
+  border: 4px solid #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lens-glass {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #4facfe, #00f2fe 40%, #000 70%);
+}
+
+.viewfinder {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 25px;
+  height: 15px;
+  background: #666;
+  border-radius: 3px;
+  border: 1px solid #999;
+}
+
+.shutter-button {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  width: 35px;
+  height: 12px;
+  background: #d9534f;
+  border: none;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+}
+
+.shutter-inner {
+  font-size: 0.55rem;
+  color: white;
+  font-weight: bold;
+  display: block;
+  margin-top: -14px;
+}
+
+.camera-flash {
+  animation: flashAnim 0.4s ease-out;
+}
+
+@keyframes flashAnim {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 1); filter: brightness(3); }
+  50% { box-shadow: 0 0 80px 40px rgba(255, 255, 255, 0.9); filter: brightness(5); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); filter: brightness(1); }
+}
+
+.video-frame {
+  margin-top: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
