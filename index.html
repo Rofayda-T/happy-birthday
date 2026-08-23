@@ -31,12 +31,10 @@
         <div class="envelope-card" id="open-envelope-btn">
           <h2 class="script-heading">You got mail!</h2>
           
-          <!-- Floating Wrapper for Envelope Assembly -->
           <div class="floating-wrapper">
-            
-            <!-- PNG Lilies Behind Envelope -->
-            <img src="Images/lily-left.png" class="lily-stem lily-left" alt="Lily Floral Left" />
-            <img src="Images/lily-right.png" class="lily-stem lily-right" alt="Lily Floral Right" />
+            <!-- PNG Lilies Behind Envelope (Using lowercase images/ folder) -->
+            <img src="images/lily-left.png" class="lily-stem lily-left" alt="Lily Floral Left" />
+            <img src="images/lily-right.png" class="lily-stem lily-right" alt="Lily Floral Right" />
 
             <!-- Envelope Container -->
             <div class="envelope-container">
@@ -45,22 +43,10 @@
               <div class="envelope-front"></div>
               <div class="envelope-flap"></div>
             </div>
-
           </div>
 
           <p class="click-hint">click the envelope to open</p>
         </div>
-      </section>
-
-      <!-- ENVELOPE OPEN REVEAL PHOTO SCREEN -->
-      <section id="photo-reveal-screen" class="hidden">
-        <div class="hero-image-wrapper full-screen-hero">
-          <img src="images/photo1.jpg" alt="Joud Birthday" class="hero-img" />
-          <div class="hero-overlay">
-            <h1 class="birthday-text">HAPPY 23RD BIRTHDAY<br /><span class="cursive-text">Joud</span></h1>
-          </div>
-        </div>
-        <button id="continue-to-main-btn" class="continue-btn">Read Your Letter ↓</button>
       </section>
 
       <!-- STEP 2: MAIN WEBSITE CONTENT -->
@@ -69,9 +55,9 @@
         <!-- Hero Header -->
         <section class="hero-banner">
           <div class="hero-image-wrapper">
-            <img src="images/photo1.jpg" alt="Us" class="hero-img" />
+            <img src="images/photo1.jpg" alt="Birthday Girl" class="hero-img" />
             <div class="hero-overlay">
-              <h1>HAPPY BIRTHDAY,<br /><span class="cursive-text">My Love</span></h1>
+              <h1 class="birthday-text">HAPPY 23RD BIRTHDAY<br /><span class="cursive-text">Joud</span></h1>
             </div>
           </div>
         </section>
@@ -82,9 +68,9 @@
             <h3>A Love Letter</h3>
             <p class="sub-letter-tag">(only for the birthday girl!)</p>
             <div class="letter-content">
-              <p><strong>My Dearest,</strong></p>
+              <p><strong>My Dearest Joud,</strong></p>
               <p>I was just thinking about you and couldn't wait to remind you how much you mean to me. Every little thing—from your contagious laugh to the quiet moments we share—makes life infinitely better. I am so grateful to have you by my side. You are my favorite part of every single day.</p>
-              <p class="signature">Forever yours,<br /><span class="cursive-sign">[Your Name]</span></p>
+              <p class="signature">Forever yours,<br /><span class="cursive-sign">Rofayda</span></p>
             </div>
           </div>
 
@@ -107,13 +93,16 @@
         <section class="gift-menu-section">
           <h2>Gifts Just For You!</h2>
           <div class="gift-items-container">
-            <a href="YOUR_SHARED_ALBUM_URL_HERE" target="_blank" class="gift-card">
+            
+            <!-- Memories Gift -->
+            <div class="gift-card" id="memories-modal-trigger">
               <div class="gift-icon-wrapper">
                 <img src="https://img.icons8.com/ios-filled/100/333333/vintage-camera.png" alt="Memories" />
               </div>
               <p class="gift-label">memories</p>
-            </a>
+            </div>
 
+            <!-- Cake Gift -->
             <div class="gift-card" id="cake-modal-trigger">
               <div class="gift-icon-wrapper">
                 <img src="https://img.icons8.com/ios-filled/100/333333/cake.png" alt="Cake" />
@@ -121,12 +110,14 @@
               <p class="gift-label">cake</p>
             </div>
 
+            <!-- Surprise Flowers Gift -->
             <div class="gift-card" id="flowers-modal-trigger">
               <div class="gift-icon-wrapper">
                 <img src="https://img.icons8.com/ios-filled/100/333333/gift.png" alt="Surprise" />
               </div>
               <p class="gift-label">surprise</p>
             </div>
+
           </div>
         </section>
 
@@ -158,13 +149,25 @@
     </div>
   </div>
 
-  <!-- MODAL 1: INTERACTIVE CAKE EATING -->
+  <!-- MODAL 1: MEMORIES PHOTO ALBUM -->
+  <div id="memories-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <span class="close-modal" id="close-memories">&times;</span>
+      <h3 class="cursive-heading">Our Favorite Moments 📷</h3>
+      <div class="modal-photo-grid">
+        <img src="images/photo1.jpg" alt="Memory 1" />
+        <img src="images/photo2.jpg" alt="Memory 2" />
+        <img src="images/photo3.jpg" alt="Memory 3" />
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: INTERACTIVE CAKE EATING -->
   <div id="cake-modal" class="modal-overlay hidden">
     <div class="modal-box">
       <span class="close-modal" id="close-cake">&times;</span>
       <h3 class="cursive-heading">Click the cake to eat it! 🍰</h3>
       <div id="cake-container" class="interactive-cake">
-        <!-- SVG Cake with 4 eatable slices -->
         <svg id="cake-svg" viewBox="0 0 200 150" width="220" height="170">
           <path id="slice-4" class="cake-slice" d="M 100,50 L 180,90 L 100,130 Z" fill="#f7a8b8" stroke="#ffffff" stroke-width="2"/>
           <path id="slice-3" class="cake-slice" d="M 100,50 L 100,130 L 20,90 Z" fill="#f48fb1" stroke="#ffffff" stroke-width="2"/>
@@ -177,7 +180,7 @@
     </div>
   </div>
 
-  <!-- MODAL 2: FLOWER BOUQUET & FLIPPING POLAROID -->
+  <!-- MODAL 3: SURPRISE FLOWER BOUQUET & FLIPPING POLAROID -->
   <div id="flowers-modal" class="modal-overlay hidden">
     <div class="modal-box">
       <span class="close-modal" id="close-flowers">&times;</span>
@@ -192,12 +195,10 @@
       <!-- Flipping 3D Polaroid Card -->
       <div id="polaroid-wrapper" class="polaroid-3d-container hidden">
         <div class="polaroid-inner-card" id="polaroid-card">
-          <!-- Front Face -->
           <div class="polaroid-face polaroid-front">
             <img id="polaroid-img" src="" alt="Memory Photo" />
             <p class="flip-hint-text">👆 click card to flip!</p>
           </div>
-          <!-- Back Face -->
           <div class="polaroid-face polaroid-back">
             <p class="polaroid-date-text" id="polaroid-date"></p>
             <p class="polaroid-msg-text" id="polaroid-msg"></p>
