@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday!</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Canvas Confetti Library -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
@@ -15,118 +15,163 @@
     <source src="music/song.mp3" type="audio/mpeg" />
   </audio>
 
-  <main class="window-container">
-    <!-- Browser Title Header -->
-    <div class="window-header">
-      <div class="dots">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
+  <div class="macbook-frame">
+    <div class="macbook-header">
+      <div class="window-dots">
+        <span class="dot close"></span>
+        <span class="dot minimize"></span>
+        <span class="dot maximize"></span>
       </div>
-      <div class="window-title">happy-birthday.site</div>
+      <div class="address-bar">happy-birthday-bestie.site</div>
     </div>
 
-    <div class="window-body">
-      
-      <!-- Section 1: Opening Envelope Card -->
-      <section id="envelope-screen" class="screen active">
-        <div class="envelope-wrapper" id="envelope-btn">
-          <div class="envelope">
-            <div class="flap"></div>
-            <div class="pocket"></div>
-            <div class="letter-preview">
-              <span>💌</span>
+    <div class="macbook-body">
+
+      <!-- STEP 1: INTERACTIVE ENVELOPE COVER -->
+      <section id="envelope-screen" class="screen-center">
+        <div class="envelope-card" id="open-envelope-btn">
+          <h2 class="script-heading">You got mail!</h2>
+          <div class="envelope-container">
+            <div class="envelope-back"></div>
+            <div class="letter-inside">
+              <span class="heart-stamp">🌸</span>
             </div>
+            <div class="envelope-front"></div>
+            <div class="envelope-flap"></div>
           </div>
-          <h1>You got mail!</h1>
-          <p class="sub-text">click the envelope to open</p>
+          <p class="click-hint">click the envelope to open</p>
         </div>
       </section>
 
-      <!-- Main Birthday Content Section -->
-      <div id="main-content" class="hidden">
+      <!-- STEP 2: MAIN WEBSITE CONTENT -->
+      <main id="main-content" class="hidden">
 
-        <!-- Hero Cover -->
-        <section class="hero-section">
-          <h1>HAPPY BIRTHDAY, <br /><span class="highlight">MY LOVE</span></h1>
+        <!-- Hero Header -->
+        <section class="hero-banner">
+          <div class="hero-image-wrapper">
+            <img src="images/photo1.jpg" alt="Us" class="hero-img" />
+            <div class="hero-overlay">
+              <h1>HAPPY BIRTHDAY,<br /><span class="cursive-text">My Love</span></h1>
+            </div>
+          </div>
         </section>
 
-        <!-- A Love Letter & Tic Tac Toe -->
-        <section class="letter-section">
-          <div class="letter-grid">
-            <div class="letter-card">
-              <h2>A Love Letter</h2>
-              <p class="letter-to">My Dearest,</p>
-              <p class="letter-body">
-                I was just thinking about you and couldn't wait to remind you how much you mean to me. Every little thing—from your contagious laugh to the quiet moments we share—makes life infinitely better. Happy Birthday!
-              </p>
-              <p class="letter-from">Forever yours,<br /><strong>[Your Name]</strong></p>
+        <!-- Love Letter & Tic Tac Toe Section -->
+        <section class="letter-grid-section">
+          <div class="love-letter-card">
+            <h3>A Love Letter</h3>
+            <p class="sub-letter-tag">(only for the birthday girl!)</p>
+            <div class="letter-content">
+              <p><strong>My Dearest,</strong></p>
+              <p>I was just thinking about you and couldn't wait to remind you how much you mean to me. Every little thing—from your contagious laugh to the quiet moments we share—makes life infinitely better. I am so incredibly grateful to have you by my side. You are my favorite part of every single day.</p>
+              <p class="signature">Forever yours,<br /><span class="cursive-sign">[Your Name]</span></p>
             </div>
-            <div class="tic-tac-toe-card">
-              <div class="game-grid">
+          </div>
+
+          <div class="side-decor-stack">
+            <div class="tic-tac-toe-box">
+              <div class="ttt-grid">
                 <span>X</span><span>O</span><span>X</span>
-                <span>O</span><span class="marked">X</span><span>O</span>
-                <span>O</span><span>X</span><span class="marked">X</span>
+                <span>O</span><span class="highlight-x">X</span><span>O</span>
+                <span>O</span><span>X</span><span class="highlight-x">X</span>
               </div>
             </div>
-          </div>
-        </section>
-
-        <!-- Gifts Just For You (Interactive Menu) -->
-        <section class="gifts-section">
-          <h2>Gifts Just For You!</h2>
-          <div class="gift-menu">
-            <a href="#gallery" class="gift-item">
-              <div class="icon-box">📷</div>
-              <p>memories</p>
-            </a>
-            <a href="#cake-section" class="gift-item" id="cake-link">
-              <div class="icon-box">🍰</div>
-              <p>cake</p>
-            </a>
-            <a href="#flowers-section" class="gift-item">
-              <div class="icon-box">💐</div>
-              <p>surprise</p>
-            </a>
-          </div>
-        </section>
-
-        <!-- Message & Record Section -->
-        <section id="gallery" class="message-section">
-          <h2>Message For You</h2>
-          <div class="photo-vinyl-container">
-            <div class="vinyl-record" id="vinyl">💿</div>
-            <div class="photo-stack">
-              <img src="images/photo1.jpg" alt="Memory 1" />
-              <img src="images/photo2.jpg" alt="Memory 2" />
+            <div class="mini-polaroid-stack">
+              <img src="images/photo2.jpg" alt="Memory" />
+              <p class="polaroid-caption">a beautiful day! ✨</p>
             </div>
           </div>
-          <div class="photo-grid-3">
-            <div class="grid-item"><img src="images/photo1.jpg" alt="Memory" /><span>soulmates</span></div>
-            <div class="grid-item"><img src="images/photo2.jpg" alt="Memory" /><span>my favorite</span></div>
-            <div class="grid-item"><img src="images/photo3.jpg" alt="Memory" /><span>memories</span></div>
+        </section>
+
+        <!-- Interactive Gift Menu Section -->
+        <section class="gift-menu-section">
+          <h2>Gifts Just For You!</h2>
+          <div class="gift-items-container">
+            <!-- Gift 1: Shared Album Link -->
+            <a href="YOUR_SHARED_ALBUM_URL_HERE" target="_blank" class="gift-card">
+              <div class="gift-icon-wrapper">
+                <img src="https://img.icons8.com/ios-filled/100/333333/vintage-camera.png" alt="Memories" />
+              </div>
+              <p class="gift-label">memories</p>
+            </a>
+
+            <!-- Gift 2: Interactive Cake Scroll -->
+            <a href="#cake-section" class="gift-card" id="cake-gift-btn">
+              <div class="gift-icon-wrapper">
+                <img src="https://img.icons8.com/ios-filled/100/333333/cake.png" alt="Cake" />
+              </div>
+              <p class="gift-label">cake</p>
+            </a>
+
+            <!-- Gift 3: Flower Bouquet Scroll -->
+            <a href="#flower-section" class="gift-card">
+              <div class="gift-icon-wrapper">
+                <img src="https://img.icons8.com/ios-filled/100/333333/gift.png" alt="Surprise" />
+              </div>
+              <p class="gift-label">surprise</p>
+            </a>
           </div>
         </section>
 
-        <!-- Interactive Cake Section -->
-        <section id="cake-section" class="cake-section">
-          <div class="cake-container">
-            <div class="cake-illustration">🎂</div>
-            <p>Make a wish! ✨</p>
+        <!-- Message & Spotify Vinyl Record Section -->
+        <section class="message-vinyl-section">
+          <div class="message-container">
+            <div class="text-side">
+              <h2>Message For You</h2>
+              <p class="latin-placeholder">
+                You bring so much light and joy into my world. No distance can change how special you are to me.
+              </p>
+            </div>
+            <div class="vinyl-side">
+              <!-- Click Vinyl to Open Spotify Playlist in New Tab -->
+              <a href="YOUR_SPOTIFY_PLAYLIST_URL_HERE" target="_blank" title="Click to open our Spotify Playlist!">
+                <div class="vinyl-disc">
+                  <div class="vinyl-center"></div>
+                </div>
+              </a>
+              <p class="vinyl-hint">🎵 click vinyl to play our playlist</p>
+            </div>
+          </div>
+
+          <!-- Photo Gallery Grid -->
+          <div class="photo-polaroids-grid">
+            <div class="polaroid-card">
+              <img src="images/photo1.jpg" alt="Gallery" />
+              <span class="tag">soulmates</span>
+            </div>
+            <div class="polaroid-card">
+              <img src="images/photo2.jpg" alt="Gallery" />
+              <span class="tag">my favorite</span>
+            </div>
+            <div class="polaroid-card">
+              <img src="images/photo3.jpg" alt="Gallery" />
+              <span class="tag">memories</span>
+            </div>
           </div>
         </section>
 
-        <!-- Flowers & Final Quote -->
-        <section id="flowers-section" class="flowers-section">
-          <div class="flower-wrapper">
-            <div class="flowers">🌻🌻🌻</div>
-            <p class="flower-quote">"love's never wasted when it's shared."</p>
+        <!-- Animated Cake Section -->
+        <section id="cake-section" class="cake-display-section">
+          <div class="cake-wrapper">
+            <div class="cake-emoji">🎂</div>
+            <h3 class="cursive-heading">Make a wish & blow! 🕯️</h3>
           </div>
         </section>
 
-      </div>
+        <!-- Sunflowers & Final Quote Section -->
+        <section id="flower-section" class="flowers-display-section">
+          <div class="flowers-wrapper">
+            <div class="sunflowers-art">🌻🌻🌻</div>
+            <div class="flower-text-wrapper">
+              <p class="curved-quote">"you give me butterflies • i love your smile • so proud of you"</p>
+              <h2 class="final-quote-title">love's never wasted<br /><span class="cursive-large">when it's shared.</span></h2>
+            </div>
+          </div>
+        </section>
+
+      </main>
     </div>
-  </main>
+  </div>
 
   <script src="script.js"></script>
 </body>
