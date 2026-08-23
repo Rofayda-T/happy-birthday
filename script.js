@@ -6,25 +6,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const openEnvelopeBtn = document.getElementById("open-envelope-btn");
   const mainContent = document.getElementById("main-content");
 
-  openEnvelopeBtn.addEventListener("click", () => {
-    // Play Background Audio
-    if (bgMusic) {
-      bgMusic.play().catch(() => console.log("Audio autoplay restriction handled"));
-    }
+  if (openEnvelopeBtn) {
+    openEnvelopeBtn.addEventListener("click", () => {
+      // Play Background Audio
+      if (bgMusic) {
+        bgMusic.play().catch(() => console.log("Audio autoplay restriction handled"));
+      }
 
-    // Trigger Confetti
-    if (typeof confetti === "function") {
-      confetti({
-        particleCount: 100,
-        spread: 80,
-        origin: { y: 0.6 }
-      });
-    }
+      // Trigger Confetti
+      if (typeof confetti === "function") {
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      }
 
-    // Reveal main page directly
-    envelopeScreen.classList.add("hidden");
-    mainContent.classList.remove("hidden");
-  });
+      // Reveal main page directly
+      envelopeScreen.classList.add("hidden");
+      mainContent.classList.remove("hidden");
+    });
+  }
 
   // MODAL 1: MEMORIES PHOTO ALBUM LOGIC
   const memoriesTrigger = document.getElementById("memories-modal-trigger");
@@ -38,13 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
     closeMemories.addEventListener("click", () => memoriesModal.classList.add("hidden"));
   }
 
-  // MODAL 2: INTERACTIVE CAKE LOGIC
+  // MODAL 2: INTERACTIVE SHAKE SHACK FEAST LOGIC
   const cakeTrigger = document.getElementById("cake-modal-trigger");
   const cakeModal = document.getElementById("cake-modal");
   const closeCake = document.getElementById("close-cake");
-  const cakeSlices = document.querySelectorAll(".cake-slice");
-  const cakeStatus = document.getElementById("cake-status-text");
-  let slicesEaten = 0;
 
   if (cakeTrigger) {
     cakeTrigger.addEventListener("click", () => cakeModal.classList.remove("hidden"));
@@ -53,24 +52,63 @@ document.addEventListener("DOMContentLoaded", () => {
     closeCake.addEventListener("click", () => cakeModal.classList.add("hidden"));
   }
 
-  cakeSlices.forEach((slice) => {
-    slice.addEventListener("click", (e) => {
-      if (e.target.style.display !== "none") {
-        e.target.style.display = "none";
-        slicesEaten++;
-        const remaining = 4 - slicesEaten;
+  // 1. ShackBurger Bite Animation
+  const burgerBites = ["burger-bite-1", "burger-bite-2", "burger-bite-3", "burger-bite-4"];
+  let currentBurgerBite = 0;
+  const burgerSvg = document.getElementById("burger-svg");
+  const burgerStatus = document.getElementById("burger-status");
 
-        if (remaining > 0) {
-          cakeStatus.textContent = `${remaining} slice${remaining > 1 ? "s" : ""} remaining... YUM! 😋`;
-        } else {
-          cakeStatus.textContent = "All gone! Hope it was delicious! 🎉";
-          if (typeof confetti === "function") {
-            confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
-          }
+  if (burgerSvg) {
+    burgerSvg.addEventListener("click", () => {
+      if (currentBurgerBite < burgerBites.length) {
+        const biteElem = document.getElementById(burgerBites[currentBurgerBite]);
+        if (biteElem) biteElem.style.opacity = "0";
+        currentBurgerBite++;
+        const remaining = burgerBites.length - currentBurgerBite;
+        burgerStatus.textContent = remaining > 0 ? `${remaining} bites left` : "Finished! 🍔";
+        
+        if (remaining === 0 && typeof confetti === "function") {
+          confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
         }
       }
     });
-  });
+  }
+
+  // 2. Crinkle Fries Eating Animation
+  const fryBatches = ["fry-batch-1", "fry-batch-2", "fry-batch-3"];
+  let currentFryBatch = 0;
+  const friesSvg = document.getElementById("fries-svg");
+  const friesStatus = document.getElementById("fries-status");
+
+  if (friesSvg) {
+    friesSvg.addEventListener("click", () => {
+      if (currentFryBatch < fryBatches.length) {
+        const fryElem = document.getElementById(fryBatches[currentFryBatch]);
+        if (fryElem) fryElem.style.opacity = "0";
+        currentFryBatch++;
+        const remaining = fryBatches.length - currentFryBatch;
+        friesStatus.textContent = remaining > 0 ? `${remaining} handfuls left` : "All eaten! 🍟";
+      }
+    });
+  }
+
+  // 3. Shake / Drink Sipping Animation
+  const sipLayers = ["sip-layer-1", "sip-layer-2", "sip-layer-3"];
+  let currentSip = 0;
+  const drinkSvg = document.getElementById("drink-svg");
+  const drinkStatus = document.getElementById("drink-status");
+
+  if (drinkSvg) {
+    drinkSvg.addEventListener("click", () => {
+      if (currentSip < sipLayers.length) {
+        const sipElem = document.getElementById(sipLayers[currentSip]);
+        if (sipElem) sipElem.style.opacity = "0";
+        currentSip++;
+        const remaining = sipLayers.length - currentSip;
+        drinkStatus.textContent = remaining > 0 ? `${remaining} sips left` : "All finished! 🥤";
+      }
+    });
+  }
 
   // MODAL 3: SURPRISE FLOWER BOUQUET & FLIPPING POLAROID LOGIC
   const flowersTrigger = document.getElementById("flowers-modal-trigger");
@@ -96,18 +134,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const date = flower.getAttribute("data-date");
       const msg = flower.getAttribute("data-msg");
 
-      polaroidImg.src = photo;
-      polaroidDate.textContent = date;
-      polaroidMsg.textContent = msg;
+      if (polaroidImg) polaroidImg.src = photo;
+      if (polaroidDate) polaroidDate.textContent = date;
+      if (polaroidMsg) polaroidMsg.textContent = msg;
 
-      polaroidCard.classList.remove("flipped");
-      polaroidWrapper.classList.remove("hidden");
+      if (polaroidCard) polaroidCard.classList.remove("flipped");
+      if (polaroidWrapper) polaroidWrapper.classList.remove("hidden");
     });
   });
 
   if (polaroidWrapper) {
     polaroidWrapper.addEventListener("click", () => {
-      polaroidCard.classList.toggle("flipped");
+      if (polaroidCard) polaroidCard.classList.toggle("flipped");
     });
   }
 });
