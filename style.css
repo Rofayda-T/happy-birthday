@@ -275,41 +275,24 @@ body {
 .mini-polaroid-stack img { width: 100%; border-radius: 8px; margin-top: 15px; }
 .polaroid-caption { font-family: 'Caveat', cursive; text-align: center; margin-top: 5px; }
 
-/* Gift Menu Layout (4 Cards Side-by-Side) */
+/* Gift Menu */
 .gift-menu-section { text-align: center; margin-bottom: 50px; }
 .gift-menu-section h2 { font-family: 'Playfair Display', serif; margin-bottom: 25px; }
+.gift-items-container { display: flex; justify-content: center; gap: 30px; }
 
-.gift-items-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.gift-card {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
+.gift-card { text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.3s ease; }
 .gift-card:hover { transform: translateY(-8px); }
-
 .gift-icon-wrapper {
-  width: 75px;
-  height: 75px;
+  width: 90px; height: 90px;
   background: white;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex; justify-content: center; align-items: center;
   box-shadow: 0 10px 20px rgba(0,0,0,0.05);
   margin: 0 auto 10px;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
-
-.gift-label { font-family: 'Caveat', cursive; font-size: 1.2rem; }
+.gift-icon-wrapper img { width: 45px; height: 45px; }
+.gift-label { font-family: 'Caveat', cursive; font-size: 1.3rem; }
 
 /* Vinyl & Grid Section */
 .message-vinyl-section { background: white; padding: 30px; border-radius: 12px; margin-bottom: 40px; }
@@ -402,13 +385,14 @@ body {
 
 .cursive-heading { font-family: 'Caveat', cursive; font-size: 2rem; color: #a85d65; margin-bottom: 15px; }
 
-/* Memories Modal Grid */
+/* Memories Modal Album Grid */
 .modal-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
 .modal-photo-grid img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; }
 
 /* Cake Slices SVG */
 .cake-slice { cursor: pointer; transition: opacity 0.3s, transform 0.2s; }
 .cake-slice:hover { opacity: 0.8; transform: scale(1.02); }
+.status-hint { font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; }
 
 /* Flower Bouquet */
 .flower-bouquet { font-size: 3.5rem; display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
@@ -433,85 +417,3 @@ body {
 .polaroid-back { transform: rotateY(180deg); justify-content: center; padding: 20px; }
 .polaroid-date-text { font-weight: bold; font-size: 0.9rem; color: #a85d65; margin-bottom: 10px; }
 .polaroid-msg-text { font-size: 0.85rem; line-height: 1.5; color: var(--text-dark); }
-
-/* CSS Vintage Camera Styling */
-.vintage-camera-body {
-  width: 220px;
-  height: 140px;
-  background: #333;
-  border-radius: 12px;
-  margin: 20px auto;
-  position: relative;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-  border-top: 25px solid #d4af37; /* Metallic Top Bar */
-  transition: transform 0.2s ease, filter 0.2s ease;
-}
-
-.camera-lens {
-  width: 80px;
-  height: 80px;
-  background: #222;
-  border: 6px solid #d4af37;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -40%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.lens-glass {
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, #4a90e2 0%, #111 80%);
-  border-radius: 50%;
-}
-
-.viewfinder {
-  width: 20px;
-  height: 14px;
-  background: #fff;
-  border: 2px solid #555;
-  position: absolute;
-  top: -18px;
-  left: 20px;
-  border-radius: 2px;
-}
-
-.shutter-button {
-  position: absolute;
-  top: -22px;
-  right: 25px;
-  background: #e74c3c;
-  border: none;
-  border-radius: 4px;
-  padding: 4px 10px;
-  cursor: pointer;
-  box-shadow: 0 4px 0 #962d22;
-  transition: transform 0.1s;
-}
-
-.shutter-button:active {
-  transform: translateY(3px);
-  box-shadow: 0 1px 0 #962d22;
-}
-
-.shutter-inner {
-  color: white;
-  font-weight: bold;
-  font-size: 0.65rem;
-}
-
-.camera-flash {
-  filter: brightness(2.5);
-  transform: scale(1.05);
-}
-
-.video-frame {
-  margin-top: 15px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
