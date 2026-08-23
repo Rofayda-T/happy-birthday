@@ -65,7 +65,12 @@ body {
 /* Envelope Cover Section */
 .screen-center { display: flex; justify-content: center; align-items: center; padding: 40px 0; }
 .envelope-card { text-align: center; cursor: pointer; }
-.script-heading { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 25px; }
+.script-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  margin-top: -20px;    /* Moves the text further up */
+  margin-bottom: 35px;  /* Adds breathing room above the envelope */
+}
 
 .floating-wrapper {
   position: relative;
