@@ -103,13 +103,13 @@ body {
 }
 
 .lily-left {
-  top: -25px; /* Shifted down from -50px */
+  top: -40px; /* Shifted down from -50px */
   left: -40px;
   animation: swayLeft 4s ease-in-out infinite alternate;
 }
 
 .lily-right {
-  top: -30px; /* Shifted down from -55px */
+  top: -45px; /* Shifted down from -55px */
   right: -40px;
   animation: swayRight 4.5s ease-in-out infinite alternate;
 }
