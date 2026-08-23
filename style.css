@@ -67,23 +67,25 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0; /* Keeps everything nicely framed */
+  padding: 10px 0;
 }
+
 .envelope-card { text-align: center; cursor: pointer; }
+
 .script-heading {
   font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
   margin-top: 10px;
-  margin-bottom: 35px; /* Creates room between text and flowers */
+  margin-bottom: 35px;
   position: relative;
-  z-index: 5; /* Ensures text stays on top */
+  z-index: 5;
 }
 
 .floating-wrapper {
   position: relative;
   width: 240px;
   height: 160px;
-  margin: 30px auto 0; /* Pushes flowers and envelope down together */
+  margin: 30px auto 0;
   animation: floatEnvelope 3.5s ease-in-out infinite;
 }
 
@@ -97,19 +99,19 @@ body {
   position: absolute;
   width: 105px;
   height: auto;
-  z-index: 1;
+  z-index: -1; /* Placed behind the envelope */
   pointer-events: none;
   transform-origin: bottom center;
 }
 
 .lily-left {
-  top: -40px; /* Shifted down from -50px */
+  top: -40px;
   left: -40px;
   animation: swayLeft 4s ease-in-out infinite alternate;
 }
 
 .lily-right {
-  top: -45px; /* Shifted down from -55px */
+  top: -45px;
   right: -40px;
   animation: swayRight 4.5s ease-in-out infinite alternate;
 }
@@ -132,7 +134,7 @@ body {
   top: 0;
   left: 0;
   perspective: 800px;
-  z-index: 10;
+  z-index: 2; /* Sits above the flowers */
 }
 
 .envelope-back {
