@@ -63,97 +63,138 @@ body {
 .hidden { display: none !important; }
 
 /* Envelope Cover Section */
-.screen-center { display: flex; justify-content: center; align-items: center; padding: 50px 0; }
+.screen-center { display: flex; justify-content: center; align-items: center; padding: 40px 0; }
 .envelope-card { text-align: center; cursor: pointer; }
 .script-heading { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 25px; }
 
-/* Envelope Floating Motion */
+/* Floating Assembly Wrapper */
 .floating-wrapper {
   position: relative;
-  width: 260px;
+  width: 240px;
+  height: 160px;
   margin: 0 auto;
   animation: floatEnvelope 3.5s ease-in-out infinite;
 }
 
 @keyframes floatEnvelope {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-/* PNG Lily Positioning & Swaying */
+/* Lily PNG Flowers Positioning & Swaying */
 .lily-stem {
   position: absolute;
-  width: 90px;
+  width: 110px;
   height: auto;
-  z-index: 0; /* Keeps flowers behind the envelope */
+  z-index: 0;
   pointer-events: none;
   transform-origin: bottom center;
 }
 
 .lily-left {
-  top: -65px;
-  left: -25px;
+  top: -50px;
+  left: -40px;
   animation: swayLeft 4s ease-in-out infinite alternate;
 }
 
 .lily-right {
-  top: -70px;
-  right: -25px;
+  top: -55px;
+  right: -40px;
   animation: swayRight 4.5s ease-in-out infinite alternate;
 }
 
-/* Soft Swaying Animation Keyframes */
 @keyframes swayLeft {
-  0% {
-    transform: rotate(-12deg) scale(0.98);
-  }
-  100% {
-    transform: rotate(-4deg) scale(1.02);
-  }
+  0% { transform: rotate(-10deg) scale(0.98); }
+  100% { transform: rotate(-2deg) scale(1.02); }
 }
 
 @keyframes swayRight {
-  0% {
-    transform: rotate(12deg) scale(1.02);
-  }
-  100% {
-    transform: rotate(4deg) scale(0.98);
-  }
+  0% { transform: rotate(10deg) scale(1.02); }
+  100% { transform: rotate(2deg) scale(0.98); }
 }
 
-/* Ensure Envelope sits in front of the stems */
+/* Envelope Container & Layers */
 .envelope-container {
-  position: relative;
+  width: 240px;
+  height: 150px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  perspective: 800px;
   z-index: 1;
 }
 
-.envelope-back { width: 100%; height: 100%; background: #d88b92; border-radius: 8px; position: absolute; }
+.envelope-back {
+  width: 100%;
+  height: 100%;
+  background: #d88b92;
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .letter-inside {
-  width: 90%; height: 80%; background: #ffffff; position: absolute; top: 10%; left: 5%;
-  border-radius: 6px; transition: transform 0.4s ease; display: flex; justify-content: center; align-items: center;
+  width: 90%;
+  height: 80%;
+  background: #ffffff;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  border-radius: 6px;
+  transition: transform 0.4s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 
 .envelope-front {
-  position: absolute; bottom: 0; width: 0; height: 0;
-  border-left: 110px solid #f2b3b8; border-right: 110px solid #f2b3b8;
-  border-bottom: 80px solid #e0949a; border-top: 70px solid transparent; border-radius: 8px; z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 120px solid #f2b3b8;
+  border-right: 120px solid #f2b3b8;
+  border-bottom: 85px solid #e0949a;
+  border-top: 65px solid transparent;
+  border-radius: 0 0 8px 8px;
+  z-index: 2;
 }
 
 .envelope-flap {
-  position: absolute; top: 0; width: 0; height: 0;
-  border-left: 110px solid transparent; border-right: 110px solid transparent;
-  border-top: 85px solid #d98b92; transform-origin: top; transition: transform 0.5s ease; z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 120px solid transparent;
+  border-right: 120px solid transparent;
+  border-top: 85px solid #d98b92;
+  transform-origin: top center;
+  transition: transform 0.5s ease;
+  z-index: 3;
 }
 
-.envelope-card:hover .envelope-flap { transform: rotateX(180deg); }
-.envelope-card:hover .letter-inside { transform: translateY(-30px); }
-.click-hint { font-family: 'Caveat', cursive; font-size: 1.2rem; color: var(--text-muted); margin-top: 25px; }
+/* Hover Interaction: Flap flips UP, Letter moves UP */
+.envelope-card:hover .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
 
-/* Full Photo Reveal Screen */
+.envelope-card:hover .letter-inside {
+  transform: translateY(-40px);
+}
+
+.click-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-top: 35px;
+}
+
+/* Full Screen Photo Reveal Screen */
 .full-screen-hero {
   height: 420px;
   position: relative;
@@ -163,7 +204,15 @@ body {
 }
 
 .hero-img { width: 100%; height: 100%; object-fit: cover; }
-.hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.35); display: flex; justify-content: center; align-items: center; color: white; }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
 
 .birthday-text {
   font-family: 'Playfair Display', serif;
@@ -195,19 +244,43 @@ body {
 }
 
 /* Letter Section */
+.hero-banner { margin-bottom: 30px; }
+.hero-banner .hero-image-wrapper { height: 300px; border-radius: 12px; overflow: hidden; position: relative; }
+.hero-banner h1 { font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center; }
+
 .letter-grid-section {
-  display: grid; grid-template-columns: 2fr 1fr; gap: 20px;
-  background: #fdfaf6; padding: 25px; border-radius: 12px; margin-bottom: 40px; border: 1px solid #f0e6da;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  background: #fdfaf6;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  border: 1px solid #f0e6da;
 }
+
 .love-letter-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #a85d65; }
 .sub-letter-tag { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 15px; }
 .letter-content { font-size: 0.9rem; line-height: 1.6; }
+.signature { margin-top: 15px; }
 .cursive-sign { font-family: 'Caveat', cursive; font-size: 1.5rem; }
 
-.ttt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; background: var(--text-dark); padding: 5px; border-radius: 6px; text-align: center; color: white; font-weight: bold; }
+.ttt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  background: var(--text-dark);
+  padding: 5px;
+  border-radius: 6px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
 .ttt-grid span { background: var(--window-bg); color: var(--text-dark); padding: 10px; }
 .highlight-x { color: #e8a2a8 !important; }
 .mini-polaroid-stack img { width: 100%; border-radius: 8px; margin-top: 15px; }
+.polaroid-caption { font-family: 'Caveat', cursive; text-align: center; margin-top: 5px; }
 
 /* Gift Menu */
 .gift-menu-section { text-align: center; margin-bottom: 50px; }
@@ -216,7 +289,14 @@ body {
 
 .gift-card { text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.3s ease; }
 .gift-card:hover { transform: translateY(-8px); }
-.gift-icon-wrapper { width: 90px; height: 90px; background: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin: 0 auto 10px; }
+.gift-icon-wrapper {
+  width: 90px; height: 90px;
+  background: white;
+  border-radius: 50%;
+  display: flex; justify-content: center; align-items: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  margin: 0 auto 10px;
+}
 .gift-icon-wrapper img { width: 45px; height: 45px; }
 .gift-label { font-family: 'Caveat', cursive; font-size: 1.3rem; }
 
@@ -225,8 +305,7 @@ body {
 .message-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; margin-bottom: 30px; }
 
 .vinyl-disc {
-  width: 140px;
-  height: 140px;
+  width: 140px; height: 140px;
   border-radius: 50%;
   margin: 0 auto;
   position: relative;
@@ -240,33 +319,25 @@ body {
 }
 
 .vinyl-center {
-  width: 50px;
-  height: 50px;
+  width: 50px; height: 50px;
   background: radial-gradient(circle, #ffffff 15%, #e8a2a8 16%);
   border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   border: 2px solid #222;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .vinyl-center::after {
   content: '';
-  width: 10px;
-  height: 10px;
+  width: 10px; height: 10px;
   background: #f7f3ec;
   border-radius: 50%;
   border: 1px solid #666;
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.vinyl-disc:hover {
-  animation-duration: 1.2s;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-}
+.vinyl-disc:hover { animation-duration: 1.2s; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); }
 
 @keyframes spinVinyl {
   0% { transform: rotate(0deg); }
@@ -310,15 +381,8 @@ body {
 .interactive-flower:hover { transform: scale(1.25) rotate(10deg); }
 
 /* 3D Flipping Polaroid */
-.polaroid-3d-container {
-  width: 220px; height: 270px; margin: 0 auto; perspective: 1000px; cursor: pointer;
-}
-
-.polaroid-inner-card {
-  width: 100%; height: 100%; position: relative;
-  transform-style: preserve-3d; transition: transform 0.6s ease;
-}
-
+.polaroid-3d-container { width: 220px; height: 270px; margin: 0 auto; perspective: 1000px; cursor: pointer; }
+.polaroid-inner-card { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.6s ease; }
 .polaroid-inner-card.flipped { transform: rotateY(180deg); }
 
 .polaroid-face {
