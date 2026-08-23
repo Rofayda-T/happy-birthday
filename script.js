@@ -1,111 +1,86 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const bgMusic = document.getElementById("bg-music");
-
-  // SECTION NAVIGATION
-  const envelopeScreen = document.getElementById("envelope-screen");
-  const openEnvelopeBtn = document.getElementById("open-envelope-btn");
-  const photoRevealScreen = document.getElementById("photo-reveal-screen");
-  const continueBtn = document.getElementById("continue-to-main-btn");
-  const mainContent = document.getElementById("main-content");
-
-  // Step 1: Open Envelope -> Show Full Photo Reveal
-  openEnvelopeBtn.addEventListener("click", () => {
-    // Play Background Music
-    if (bgMusic) {
-      bgMusic.play().catch(() => console.log("Audio autoplay restricted"));
-    }
-
-    // Trigger Confetti
-    if (typeof confetti === "function") {
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-    }
-
-    envelopeScreen.classList.add("hidden");
-    photoRevealScreen.classList.remove("hidden");
-  });
-
-  // Step 2: Continue -> Show Main Content
-  continueBtn.addEventListener("click", () => {
-    photoRevealScreen.classList.add("hidden");
-    mainContent.classList.remove("hidden");
-  });
-
-  // CAKE MODAL LOGIC
-  const cakeTrigger = document.getElementById("cake-modal-trigger");
-  const cakeModal = document.getElementById("cake-modal");
-  const closeCake = document.getElementById("close-cake");
-  const cakeSlices = document.querySelectorAll(".cake-slice");
-  const cakeStatus = document.getElementById("cake-status-text");
-  let slicesEaten = 0;
-
-  if (cakeTrigger) {
-    cakeTrigger.addEventListener("click", () => cakeModal.classList.remove("hidden"));
-  }
-  if (closeCake) {
-    closeCake.addEventListener("click", () => cakeModal.classList.add("hidden"));
+// Step 1: Open Envelope -> Play Song + Show "HAPPY 23RD BIRTHDAY JOUD" Reveal + Confetti
+document.getElementById('open-envelope-btn').addEventListener('click', function() {
+  const audio = document.getElementById('bg-music');
+  if (audio) {
+    audio.play().catch(err => console.log("Audio playback blocked by browser:", err));
   }
 
-  cakeSlices.forEach((slice) => {
-    slice.addEventListener("click", (e) => {
-      if (e.target.style.display !== "none") {
-        e.target.style.display = "none";
-        slicesEaten++;
-        const remaining = 4 - slicesEaten;
+  // Hide envelope screen, show photo reveal screen
+  document.getElementById('envelope-screen').classList.add('hidden');
+  document.getElementById('photo-reveal-screen').classList.remove('hidden');
 
-        if (remaining > 0) {
-          cakeStatus.textContent = `${remaining} slice${remaining > 1 ? "s" : ""} remaining... YUM! 😋`;
-        } else {
-          cakeStatus.textContent = "All gone! Hope it was delicious! 🎉";
-          if (typeof confetti === "function") {
-            confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
-          }
-        }
+  // Trigger Celebration Confetti
+  confetti({ particleCount: 140, spread: 90, origin: { y: 0.6 } });
+});
+
+// Step 2: Continue Button -> Reveal Main Letter Page
+document.getElementById('continue-to-main-btn').addEventListener('click', function() {
+  document.getElementById('photo-reveal-screen').classList.add('hidden');
+  document.getElementById('main-content').classList.remove('hidden');
+});
+
+// Interactive Cake Eating Modal
+const cakeModal = document.getElementById('cake-modal');
+let slicesLeft = 4;
+
+document.getElementById('cake-modal-trigger').addEventListener('click', () => {
+  cakeModal.classList.remove('hidden');
+});
+
+document.getElementById('close-cake').addEventListener('click', () => {
+  cakeModal.classList.add('hidden');
+});
+
+document.querySelectorAll('.cake-slice').forEach(slice => {
+  slice.addEventListener('click', function() {
+    if (this.style.visibility !== 'hidden') {
+      this.style.visibility = 'hidden';
+      slicesLeft--;
+      
+      const text = document.getElementById('cake-status-text');
+      if (slicesLeft > 0) {
+        text.textContent = `${slicesLeft} slice${slicesLeft > 1 ? 's' : ''} remaining... Yummy! 😋`;
+      } else {
+        text.textContent = "All gone! Hope your birthday is as sweet as this cake! 🎉";
+        confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
       }
-    });
+    }
   });
+});
 
-  // FLOWER BOUQUET & POLAROID FLIP LOGIC
-  const flowersTrigger = document.getElementById("flowers-modal-trigger");
-  const flowersModal = document.getElementById("flowers-modal");
-  const closeFlowers = document.getElementById("close-flowers");
-  const flowers = document.querySelectorAll(".interactive-flower");
-  const polaroidWrapper = document.getElementById("polaroid-wrapper");
-  const polaroidCard = document.getElementById("polaroid-card");
-  const polaroidImg = document.getElementById("polaroid-img");
-  const polaroidDate = document.getElementById("polaroid-date");
-  const polaroidMsg = document.getElementById("polaroid-msg");
+// Interactive Flowers & Flipping Polaroid Modal
+const flowersModal = document.getElementById('flowers-modal');
+const polaroidWrapper = document.getElementById('polaroid-wrapper');
+const polaroidCard = document.getElementById('polaroid-card');
 
-  if (flowersTrigger) {
-    flowersTrigger.addEventListener("click", () => flowersModal.classList.remove("hidden"));
-  }
-  if (closeFlowers) {
-    closeFlowers.addEventListener("click", () => flowersModal.classList.add("hidden"));
-  }
+document.getElementById('flowers-modal-trigger').addEventListener('click', () => {
+  flowersModal.classList.remove('hidden');
+});
 
-  flowers.forEach((flower) => {
-    flower.addEventListener("click", () => {
-      const photo = flower.getAttribute("data-photo");
-      const date = flower.getAttribute("data-date");
-      const msg = flower.getAttribute("data-msg");
+document.getElementById('close-flowers').addEventListener('click', () => {
+  flowersModal.classList.add('hidden');
+  polaroidWrapper.classList.add('hidden');
+  polaroidCard.classList.remove('flipped');
+});
 
-      polaroidImg.src = photo;
-      polaroidDate.textContent = date;
-      polaroidMsg.textContent = msg;
+document.querySelectorAll('.interactive-flower').forEach(flower => {
+  flower.addEventListener('click', function() {
+    const photo = this.getAttribute('data-photo');
+    const date = this.getAttribute('data-date');
+    const msg = this.getAttribute('data-msg');
 
-      // Reset Flip and Reveal Card
-      polaroidCard.classList.remove("flipped");
-      polaroidWrapper.classList.remove("hidden");
-    });
+    document.getElementById('polaroid-img').src = photo;
+    document.getElementById('polaroid-date').textContent = date;
+    document.getElementById('polaroid-msg').textContent = msg;
+
+    polaroidCard.classList.remove('flipped');
+    polaroidWrapper.classList.remove('hidden');
+
+    confetti({ particleCount: 40, spread: 50, origin: { y: 0.7 } });
   });
+});
 
-  // Flip Polaroid Card
-  if (polaroidWrapper) {
-    polaroidWrapper.addEventListener("click", () => {
-      polaroidCard.classList.toggle("flipped");
-    });
-  }
+// Flip Polaroid Card on Click
+polaroidCard.addEventListener('click', function() {
+  this.classList.toggle('flipped');
 });
