@@ -10,7 +10,6 @@
 </head>
 <body>
 
-  <!-- Background Audio Track -->
   <audio id="bg-music" loop>
     <source src="music/song.mp3" type="audio/mpeg" />
   </audio>
@@ -27,36 +26,47 @@
 
     <div class="macbook-body">
 
-<!-- STEP 1: INTERACTIVE ENVELOPE COVER -->
-<section id="envelope-screen" class="screen-center">
-  <div class="envelope-card" id="open-envelope-btn">
-    <h2 class="script-heading">You got mail!</h2>
-    
-    <!-- Floating Wrapper for Envelope Assembly -->
-    <div class="floating-wrapper">
-      
-      <!-- PNG Lilies Behind Envelope -->
-      <img src="images/lily-left.png" class="lily-stem lily-left" alt="Lily Floral Left" />
-      <img src="images/lily-right.png" class="lily-stem lily-right" alt="Lily Floral Right" />
+      <!-- STEP 1: INTERACTIVE ENVELOPE COVER -->
+      <section id="envelope-screen" class="screen-center">
+        <div class="envelope-card" id="open-envelope-btn">
+          <h2 class="script-heading">You got mail!</h2>
+          
+          <!-- Floating Wrapper for Envelope Assembly -->
+          <div class="floating-wrapper">
+            
+            <!-- PNG Lilies Behind Envelope -->
+            <img src="Images/lily-left.png" class="lily-stem lily-left" alt="Lily Floral Left" />
+            <img src="Images/lily-right.png" class="lily-stem lily-right" alt="Lily Floral Right" />
 
-      <!-- Envelope Container -->
-      <div class="envelope-container">
-        <div class="envelope-back"></div>
-        <div class="letter-inside"><span class="heart-stamp">🩷</span></div>
-        <div class="envelope-front"></div>
-        <div class="envelope-flap"></div>
-      </div>
+            <!-- Envelope Container -->
+            <div class="envelope-container">
+              <div class="envelope-back"></div>
+              <div class="letter-inside"><span class="heart-stamp">🩷</span></div>
+              <div class="envelope-front"></div>
+              <div class="envelope-flap"></div>
+            </div>
 
-    </div>
+          </div>
 
-    <p class="click-hint">click the envelope to open</p>
-  </div>
-</section>
+          <p class="click-hint">click the envelope to open</p>
+        </div>
+      </section>
+
+      <!-- ENVELOPE OPEN REVEAL PHOTO SCREEN -->
+      <section id="photo-reveal-screen" class="hidden">
+        <div class="hero-image-wrapper full-screen-hero">
+          <img src="images/photo1.jpg" alt="Joud Birthday" class="hero-img" />
+          <div class="hero-overlay">
+            <h1 class="birthday-text">HAPPY 23RD BIRTHDAY<br /><span class="cursive-text">Joud</span></h1>
+          </div>
+        </div>
+        <button id="continue-to-main-btn" class="continue-btn">Read Your Letter ↓</button>
+      </section>
 
       <!-- STEP 2: MAIN WEBSITE CONTENT -->
       <main id="main-content" class="hidden">
 
-        <!-- Hero Banner -->
+        <!-- Hero Header -->
         <section class="hero-banner">
           <div class="hero-image-wrapper">
             <img src="images/photo1.jpg" alt="Us" class="hero-img" />
@@ -66,7 +76,7 @@
           </div>
         </section>
 
-        <!-- Love Letter & Tic-Tac-Toe Section -->
+        <!-- Love Letter & Tic Tac Toe Section -->
         <section class="letter-grid-section">
           <div class="love-letter-card">
             <h3>A Love Letter</h3>
@@ -97,7 +107,6 @@
         <section class="gift-menu-section">
           <h2>Gifts Just For You!</h2>
           <div class="gift-items-container">
-            <!-- Shared Photo Album -->
             <a href="YOUR_SHARED_ALBUM_URL_HERE" target="_blank" class="gift-card">
               <div class="gift-icon-wrapper">
                 <img src="https://img.icons8.com/ios-filled/100/333333/vintage-camera.png" alt="Memories" />
@@ -105,7 +114,6 @@
               <p class="gift-label">memories</p>
             </a>
 
-            <!-- Cake Modal Trigger -->
             <div class="gift-card" id="cake-modal-trigger">
               <div class="gift-icon-wrapper">
                 <img src="https://img.icons8.com/ios-filled/100/333333/cake.png" alt="Cake" />
@@ -113,7 +121,6 @@
               <p class="gift-label">cake</p>
             </div>
 
-            <!-- Flower Surprise Modal Trigger -->
             <div class="gift-card" id="flowers-modal-trigger">
               <div class="gift-icon-wrapper">
                 <img src="https://img.icons8.com/ios-filled/100/333333/gift.png" alt="Surprise" />
@@ -131,7 +138,7 @@
               <p>You bring so much light and joy into my world. No distance can change how special you are to me.</p>
             </div>
             <div class="vinyl-side">
-              <a href="YOUR_SPOTIFY_PLAYLIST_URL_HERE" target="_blank" title="Click to open our Spotify Playlist!">
+              <a href="https://open.spotify.com/playlist/2Jd43zQsEDWJMNxl2MeDFw?si=4pC_6lo_RpiHXPmawpgThA&utm_source=copy-link" target="_blank" title="Click to open our Spotify Playlist!">
                 <div class="vinyl-disc">
                   <div class="vinyl-center"></div>
                 </div>
@@ -157,6 +164,7 @@
       <span class="close-modal" id="close-cake">&times;</span>
       <h3 class="cursive-heading">Click the cake to eat it! 🍰</h3>
       <div id="cake-container" class="interactive-cake">
+        <!-- SVG Cake with 4 eatable slices -->
         <svg id="cake-svg" viewBox="0 0 200 150" width="220" height="170">
           <path id="slice-4" class="cake-slice" d="M 100,50 L 180,90 L 100,130 Z" fill="#f7a8b8" stroke="#ffffff" stroke-width="2"/>
           <path id="slice-3" class="cake-slice" d="M 100,50 L 100,130 L 20,90 Z" fill="#f48fb1" stroke="#ffffff" stroke-width="2"/>
@@ -177,16 +185,19 @@
       
       <div class="flower-bouquet">
         <span class="interactive-flower" data-photo="images/photo1.jpg" data-date="June 15, 2024" data-msg="The day we spent all afternoon laughing by the shore!">🌻</span>
-        <span class="interactive-flower" data-photo="images/photo2.jpg" data-date="August 23, 2025" data-msg="Our favorite coffee spot date. I miss these days so much!">🌹</span>
+        <span class="interactive-flower" data-photo="images/photo2.jpg" data-date="August 23, 2025" data-msg="Our favorite coffee spot date. I miss these days so much!" >🌹</span>
         <span class="interactive-flower" data-photo="images/photo3.jpg" data-date="December 31, 2025" data-msg="New Year's Eve midnight celebration. Best start to the year!">🌷</span>
       </div>
 
+      <!-- Flipping 3D Polaroid Card -->
       <div id="polaroid-wrapper" class="polaroid-3d-container hidden">
         <div class="polaroid-inner-card" id="polaroid-card">
+          <!-- Front Face -->
           <div class="polaroid-face polaroid-front">
             <img id="polaroid-img" src="" alt="Memory Photo" />
             <p class="flip-hint-text">👆 click card to flip!</p>
           </div>
+          <!-- Back Face -->
           <div class="polaroid-face polaroid-back">
             <p class="polaroid-date-text" id="polaroid-date"></p>
             <p class="polaroid-msg-text" id="polaroid-msg"></p>
