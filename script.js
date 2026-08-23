@@ -39,27 +39,45 @@ document.addEventListener("DOMContentLoaded", () => {
   if (bgMusic && lyricLines.length > 0) {
     bgMusic.addEventListener("timeupdate", () => {
       const currentTime = bgMusic.currentTime;
-      let activeIndex = -1;
+      const audio = document.getElementById('bg-music');
+const lyricLines = document.querySelectorAll('.lyric-line');
+const lyricsScreen = document.getElementById('lyrics-screen');
 
-      // 1. Find the currently active lyric line
-      lyricLines.forEach((line, index) => {
-        const lineTime = parseFloat(line.getAttribute("data-time"));
-        if (currentTime >= lineTime) {
-          activeIndex = index;
-        }
-      });
+let currentActiveIndex = -1;
 
-      // 2. Highlight active line and smoothly scroll
-      lyricLines.forEach((line, index) => {
-        if (index === activeIndex) {
-          line.classList.add("active");
-          // Centers the active line in the screen
-          line.scrollIntoView({ behavior: "smooth", block: "center" });
-        } else {
-          line.classList.remove("active");
-        }
-      });
+audio.addEventListener('timeupdate', () => {
+  const currentTime = audio.currentTime;
+  let activeIndex = -1;
+
+  // Find the current lyric line based on timestamp
+  lyricLines.forEach((line, index) => {
+    const time = parseFloat(line.getAttribute('data-time'));
+    if (currentTime >= time) {
+      activeIndex = index;
+    }
+  });
+
+  // ONLY trigger scroll if the active line has actually changed
+  if (activeIndex !== -1 && activeIndex !== currentActiveIndex) {
+    currentActiveIndex = activeIndex;
+
+    // Remove active class from all lines
+    lyricLines.forEach(line => line.classList.remove('active'));
+
+    // Highlight current line
+    const activeLine = lyricLines[activeIndex];
+    activeLine.classList.add('active');
+
+    // Smoothly scroll inside the lyrics container only
+    const containerTop = lyricsScreen.offsetTop;
+    const lineTop = activeLine.offsetTop;
+    
+    lyricsScreen.scrollTo({
+      top: lineTop - containerTop - 40, // Keeps current line centered
+      behavior: 'smooth'
     });
+  }
+});
   }
 
   // ==========================================
