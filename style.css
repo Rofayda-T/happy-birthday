@@ -134,9 +134,73 @@ body {
 /* Vinyl & Grid */
 .message-vinyl-section { background: white; padding: 30px; border-radius: 12px; margin-bottom: 40px; }
 .message-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; margin-bottom: 30px; }
-.vinyl-disc { width: 120px; height: 120px; background: radial-gradient(circle, #333 30%, #111 70%); border-radius: 50%; margin: 0 auto; position: relative; animation: spin 6s linear infinite; box-shadow: 0 8px 20px rgba(0,0,0,0.2); cursor: pointer; }
-.vinyl-center { width: 35px; height: 35px; background: #e8a2a8; border-radius: 50%; position: absolute; top: 35%; left: 35%; }
-@keyframes spin { 100% { transform: rotate(360deg); } }
+/* Vinyl Disc Structure & Realistic Texture */
+.vinyl-disc {
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(
+    circle,
+    #111 0%,
+    #111 25%,
+    #222 26%,
+    #111 27%,
+    #333 40%,
+    #111 41%,
+    #222 60%,
+    #111 61%,
+    #000 100%
+  );
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  /* Spin animation */
+  animation: spinVinyl 4s linear infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Red/Pink Album Label in Center */
+.vinyl-center {
+  width: 45px;
+  height: 45px;
+  background: radial-gradient(circle, #ffffff 15%, #e8a2a8 16%);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #333;
+}
+
+/* Center Spindle Hole */
+.vinyl-center::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #f7f3ec;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Hover Effect: Speeds up spin & lifts record */
+.vinyl-disc:hover {
+  animation-duration: 2s;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Infinite Rotation Keyframes */
+@keyframes spinVinyl {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .vinyl-hint { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 10px; }
 
 .photo-polaroids-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
