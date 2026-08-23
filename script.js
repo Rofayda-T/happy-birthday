@@ -40,13 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
     closeMemories.addEventListener("click", () => memoriesModal.classList.add("hidden"));
   }
 
-  // MODAL 2: INTERACTIVE CAKE LOGIC
+  // MODAL 2: INTERACTIVE SHAKE SHACK FEAST LOGIC (BURGER, FRIES, DRINK)
   const cakeTrigger = document.getElementById("cake-modal-trigger");
   const cakeModal = document.getElementById("cake-modal");
   const closeCake = document.getElementById("close-cake");
-  const cakeSlices = document.querySelectorAll(".cake-slice");
-  const cakeStatus = document.getElementById("cake-status-text");
-  let slicesEaten = 0;
 
   if (cakeTrigger) {
     cakeTrigger.addEventListener("click", () => cakeModal.classList.remove("hidden"));
@@ -55,22 +52,52 @@ document.addEventListener("DOMContentLoaded", () => {
     closeCake.addEventListener("click", () => cakeModal.classList.add("hidden"));
   }
 
-  cakeSlices.forEach((slice) => {
-    slice.addEventListener("click", (e) => {
-      if (e.target.style.display !== "none") {
-        e.target.style.display = "none";
-        slicesEaten++;
-        const remaining = 4 - slicesEaten;
+  // 1. ShackBurger Bite Logic
+  const burgerBites = document.querySelectorAll(".burger-bite");
+  const burgerStatus = document.getElementById("burger-status");
+  let burgerCount = burgerBites.length;
 
-        if (cakeStatus) {
-          if (remaining > 0) {
-            cakeStatus.textContent = `${remaining} slice${remaining > 1 ? "s" : ""} remaining... YUM! 😋`;
-          } else {
-            cakeStatus.textContent = "All gone! Hope it was delicious! 🎉";
-            if (typeof confetti === "function") {
-              confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
-            }
-          }
+  burgerBites.forEach((bite) => {
+    bite.addEventListener("click", () => {
+      if (bite.style.display !== "none") {
+        bite.style.display = "none";
+        burgerCount--;
+        if (burgerStatus) {
+          burgerStatus.textContent = burgerCount > 0 ? `${burgerCount} bites left` : "Burger finished! 😋";
+        }
+      }
+    });
+  });
+
+  // 2. Crinkle Fries Logic
+  const fryBatches = document.querySelectorAll(".fry-batch");
+  const friesStatus = document.getElementById("fries-status");
+  let friesCount = fryBatches.length;
+
+  fryBatches.forEach((batch) => {
+    batch.addEventListener("click", () => {
+      if (batch.style.display !== "none") {
+        batch.style.display = "none";
+        friesCount--;
+        if (friesStatus) {
+          friesStatus.textContent = friesCount > 0 ? `${friesCount} handfuls left` : "Fries all gone! 🍟";
+        }
+      }
+    });
+  });
+
+  // 3. Shake Drink Sip Logic
+  const sipLayers = document.querySelectorAll(".sip-layer");
+  const drinkStatus = document.getElementById("drink-status");
+  let drinkCount = sipLayers.length;
+
+  sipLayers.forEach((layer) => {
+    layer.addEventListener("click", () => {
+      if (layer.style.display !== "none") {
+        layer.style.display = "none";
+        drinkCount--;
+        if (drinkStatus) {
+          drinkStatus.textContent = drinkCount > 0 ? `${drinkCount} sips left` : "Empty cup! 🥤";
         }
       }
     });
@@ -112,6 +139,45 @@ document.addEventListener("DOMContentLoaded", () => {
   if (polaroidWrapper) {
     polaroidWrapper.addEventListener("click", () => {
       if (polaroidCard) polaroidCard.classList.toggle("flipped");
+    });
+  }
+
+  // MODAL 4: VINTAGE CAMERA & VIDEO LOGIC
+  const cameraTrigger = document.getElementById("camera-modal-trigger");
+  const cameraModal = document.getElementById("camera-modal");
+  const closeCamera = document.getElementById("close-camera");
+  const shutterBtn = document.getElementById("shutter-btn");
+  const cameraBody = document.getElementById("camera-body");
+  const videoFrame = document.getElementById("video-display-frame");
+  const cameraVideo = document.getElementById("camera-video");
+
+  if (cameraTrigger) {
+    cameraTrigger.addEventListener("click", () => {
+      cameraModal.classList.remove("hidden");
+      if (cameraBody) cameraBody.classList.remove("hidden");
+      if (videoFrame) videoFrame.classList.add("hidden");
+    });
+  }
+
+  if (closeCamera) {
+    closeCamera.addEventListener("click", () => {
+      cameraModal.classList.add("hidden");
+      if (cameraVideo) cameraVideo.pause();
+    });
+  }
+
+  if (shutterBtn) {
+    shutterBtn.addEventListener("click", () => {
+      if (cameraBody) cameraBody.classList.add("camera-flash");
+
+      setTimeout(() => {
+        if (cameraBody) {
+          cameraBody.classList.remove("camera-flash");
+          cameraBody.classList.add("hidden");
+        }
+        if (videoFrame) videoFrame.classList.remove("hidden");
+        if (cameraVideo) cameraVideo.play().catch(() => {});
+      }, 400);
     });
   }
 });
