@@ -52,8 +52,7 @@
       </section>
 
       <!-- STEP 2: MAIN WEBSITE CONTENT -->
-      <main id="main-content" class="hidden">
-
+     <div id="main-content" class="hidden">
         <!-- Hero Header -->
         <section class="hero-banner">
           <div class="hero-image-wrapper">
@@ -93,37 +92,36 @@
 
         <!-- Interactive Gift Menu Section -->
        <section class="gift-menu-section">
-  <h2>Gifts Just For You!</h2>
-  <div class="gift-items-container">
-    <div class="gift-card" id="memories-modal-trigger">
-      <div class="gift-icon-wrapper">
-        <span>📸</span>
+    <h2>Gifts Just For You!</h2>
+    <div class="gift-items-container">
+      <div class="gift-card" id="memories-modal-trigger">
+        <div class="gift-icon-wrapper">📸</div>
+        <div class="gift-label">memories</div>
       </div>
-      <div class="gift-label">memories</div>
-    </div>
 
-    <div class="gift-card" id="cake-modal-trigger">
-      <div class="gift-icon-wrapper">
-        <span>🍔</span>
+      <div class="gift-card" id="cake-modal-trigger">
+        <div class="gift-icon-wrapper">🍔</div>
+        <div class="gift-label">cake</div>
       </div>
-      <div class="gift-label">cake</div>
-    </div>
 
-    <div class="gift-card" id="flowers-modal-trigger">
-      <div class="gift-icon-wrapper">
-        <span>🎁</span>
+      <div class="gift-card" id="flowers-modal-trigger">
+        <div class="gift-icon-wrapper">💐</div>
+        <div class="gift-label">surprise</div>
       </div>
-      <div class="gift-label">surprise</div>
+
+      <div class="gift-card" id="camera-modal-trigger">
+        <div class="gift-icon-wrapper">🎥</div>
+        <div class="gift-label">vintage camera</div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
             <!-- MODAL 2: SHAKE SHACK FEAST (BURGER, FRIES, DRINK) -->
 <div id="cake-modal" class="modal-overlay hidden">
   <div class="modal-box shack-modal-box">
     <span class="close-modal" id="close-cake">&times;</span>
-    <h3 class="cursive-heading">Shake Shack Birthday Feast! 🍔🍟🥤</h3>
-    <p class="status-hint">Click any item to take a bite or sip!</p>
+    <h3 class="cursive-heading">Shake Shack Birthday cake 🍔🍟🥤</h3>
+    <p class="status-hint">Click any item to take a bite or sip</p>
 
     <div class="shack-menu-grid">
       
@@ -163,7 +161,7 @@
             <path d="M 30,90 L 130,90 L 120,170 L 40,170 Z" fill="#e53935" />
             <path d="M 30,90 Q 80,105 130,90 L 120,170 L 40,170 Z" fill="#c62828" />
 
-            <!-- Individual Fry Batches (Click to Eat) -->
+            <!-- Fries (Click to Eat) -->
             <g class="fry-batch" id="fry-batch-1">
               <rect x="45" y="30" width="10" height="70" rx="3" fill="#fbc02d" />
               <rect x="75" y="25" width="10" height="75" rx="3" fill="#fdd835" />
@@ -182,7 +180,7 @@
         <p id="fries-status" class="item-status">3 handfuls left</p>
       </div>
 
-      <!-- 3. SHAKE / COKE DRINK -->
+      <!-- 3. SHAKE / ZERO COKE DRINK -->
       <div class="shack-item-card">
         <p class="item-title">Shack Drink</p>
         <div class="interactive-svg-wrapper">
@@ -247,6 +245,33 @@
       </main>
     </div>
   </div>
+
+  <div id="camera-modal" class="modal-overlay hidden">
+  <div class="modal-box camera-modal-box">
+    <span class="close-modal" id="close-camera">&times;</span>
+    <h3 class="cursive-heading">Vintage Cinema 📽️</h3>
+    
+    <!-- CSS Vintage Camera Body -->
+    <div class="vintage-camera-body" id="camera-body">
+      <div class="camera-lens">
+        <div class="lens-glass"></div>
+      </div>
+      <div class="viewfinder"></div>
+      <button id="shutter-btn" class="shutter-button">
+        <span class="shutter-inner">START</span>
+      </button>
+    </div>
+
+    <!-- Video Display Frame (Revealed on Shutter Click) -->
+    <div id="video-display-frame" class="video-frame hidden">
+      <video id="camera-video" controls width="100%" poster="https://via.placeholder.com/400x225?text=Click+Play">
+        <!-- REPLACE 'your-video.mp4' WITH YOUR ACTUAL VIDEO FILE OR URL -->
+        <source src="your-video.mp4" type="video/mp4">
+        Your browser does not support video playback.
+      </video>
+    </div>
+  </div>
+</div>
 
   <!-- MODAL 1: MEMORIES PHOTO ALBUM -->
   <div id="memories-modal" class="modal-overlay hidden">
