@@ -10,7 +10,6 @@
 </head>
 <body>
 
-  <!-- Floating Audio Player -->
   <audio id="bg-music" loop>
     <source src="music/song.mp3" type="audio/mpeg" />
   </audio>
@@ -33,9 +32,7 @@
           <h2 class="script-heading">You got mail!</h2>
           <div class="envelope-container">
             <div class="envelope-back"></div>
-            <div class="letter-inside">
-              <span class="heart-stamp">🌸</span>
-            </div>
+            <div class="letter-inside"><span class="heart-stamp">🌸</span></div>
             <div class="envelope-front"></div>
             <div class="envelope-flap"></div>
           </div>
@@ -63,7 +60,7 @@
             <p class="sub-letter-tag">(only for the birthday girl!)</p>
             <div class="letter-content">
               <p><strong>My Dearest,</strong></p>
-              <p>I was just thinking about you and couldn't wait to remind you how much you mean to me. Every little thing—from your contagious laugh to the quiet moments we share—makes life infinitely better. I am so incredibly grateful to have you by my side. You are my favorite part of every single day.</p>
+              <p>I was just thinking about you and couldn't wait to remind you how much you mean to me. Every little thing—from your contagious laugh to the quiet moments we share—makes life infinitely better. I am so grateful to have you by my side. You are my favorite part of every single day.</p>
               <p class="signature">Forever yours,<br /><span class="cursive-sign">[Your Name]</span></p>
             </div>
           </div>
@@ -87,7 +84,6 @@
         <section class="gift-menu-section">
           <h2>Gifts Just For You!</h2>
           <div class="gift-items-container">
-            <!-- Gift 1: Shared Album Link -->
             <a href="YOUR_SHARED_ALBUM_URL_HERE" target="_blank" class="gift-card">
               <div class="gift-icon-wrapper">
                 <img src="https://img.icons8.com/ios-filled/100/333333/vintage-camera.png" alt="Memories" />
@@ -95,35 +91,30 @@
               <p class="gift-label">memories</p>
             </a>
 
-            <!-- Gift 2: Interactive Cake Scroll -->
-            <a href="#cake-section" class="gift-card" id="cake-gift-btn">
+            <div class="gift-card" id="cake-modal-trigger">
               <div class="gift-icon-wrapper">
                 <img src="https://img.icons8.com/ios-filled/100/333333/cake.png" alt="Cake" />
               </div>
               <p class="gift-label">cake</p>
-            </a>
+            </div>
 
-            <!-- Gift 3: Flower Bouquet Scroll -->
-            <a href="#flower-section" class="gift-card">
+            <div class="gift-card" id="flowers-modal-trigger">
               <div class="gift-icon-wrapper">
                 <img src="https://img.icons8.com/ios-filled/100/333333/gift.png" alt="Surprise" />
               </div>
               <p class="gift-label">surprise</p>
-            </a>
+            </div>
           </div>
         </section>
 
-        <!-- Message & Spotify Vinyl Record Section -->
+        <!-- Vinyl Record & Gallery Grid -->
         <section class="message-vinyl-section">
           <div class="message-container">
             <div class="text-side">
               <h2>Message For You</h2>
-              <p class="latin-placeholder">
-                You bring so much light and joy into my world. No distance can change how special you are to me.
-              </p>
+              <p>You bring so much light and joy into my world. No distance can change how special you are to me.</p>
             </div>
             <div class="vinyl-side">
-              <!-- Click Vinyl to Open Spotify Playlist in New Tab -->
               <a href="YOUR_SPOTIFY_PLAYLIST_URL_HERE" target="_blank" title="Click to open our Spotify Playlist!">
                 <div class="vinyl-disc">
                   <div class="vinyl-center"></div>
@@ -133,43 +124,64 @@
             </div>
           </div>
 
-          <!-- Photo Gallery Grid -->
           <div class="photo-polaroids-grid">
-            <div class="polaroid-card">
-              <img src="images/photo1.jpg" alt="Gallery" />
-              <span class="tag">soulmates</span>
-            </div>
-            <div class="polaroid-card">
-              <img src="images/photo2.jpg" alt="Gallery" />
-              <span class="tag">my favorite</span>
-            </div>
-            <div class="polaroid-card">
-              <img src="images/photo3.jpg" alt="Gallery" />
-              <span class="tag">memories</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- Animated Cake Section -->
-        <section id="cake-section" class="cake-display-section">
-          <div class="cake-wrapper">
-            <div class="cake-emoji">🎂</div>
-            <h3 class="cursive-heading">Make a wish & blow! 🕯️</h3>
-          </div>
-        </section>
-
-        <!-- Sunflowers & Final Quote Section -->
-        <section id="flower-section" class="flowers-display-section">
-          <div class="flowers-wrapper">
-            <div class="sunflowers-art">🌻🌻🌻</div>
-            <div class="flower-text-wrapper">
-              <p class="curved-quote">"you give me butterflies • i love your smile • so proud of you"</p>
-              <h2 class="final-quote-title">love's never wasted<br /><span class="cursive-large">when it's shared.</span></h2>
-            </div>
+            <div class="polaroid-card"><img src="images/photo1.jpg" alt="Gallery" /><span class="tag">soulmates</span></div>
+            <div class="polaroid-card"><img src="images/photo2.jpg" alt="Gallery" /><span class="tag">my favorite</span></div>
+            <div class="polaroid-card"><img src="images/photo3.jpg" alt="Gallery" /><span class="tag">memories</span></div>
           </div>
         </section>
 
       </main>
+    </div>
+  </div>
+
+  <!-- MODAL 1: INTERACTIVE CAKE EATING -->
+  <div id="cake-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <span class="close-modal" id="close-cake">&times;</span>
+      <h3 class="cursive-heading">Click the cake to eat it! 🍰</h3>
+      <div id="cake-container" class="interactive-cake">
+        <!-- SVG Cake with 4 eatable slices -->
+        <svg id="cake-svg" viewBox="0 0 200 150" width="220" height="170">
+          <path id="slice-4" class="cake-slice" d="M 100,50 L 180,90 L 100,130 Z" fill="#f7a8b8" stroke="#ffffff" stroke-width="2"/>
+          <path id="slice-3" class="cake-slice" d="M 100,50 L 100,130 L 20,90 Z" fill="#f48fb1" stroke="#ffffff" stroke-width="2"/>
+          <path id="slice-2" class="cake-slice" d="M 100,50 L 140,20 L 180,90 Z" fill="#f06292" stroke="#ffffff" stroke-width="2"/>
+          <path id="slice-1" class="cake-slice" d="M 100,50 L 20,90 L 60,20 Z" fill="#e91e63" stroke="#ffffff" stroke-width="2"/>
+          <circle cx="100" cy="50" r="10" fill="#d32f2f" />
+        </svg>
+      </div>
+      <p id="cake-status-text" class="status-hint">4 slices remaining...</p>
+    </div>
+  </div>
+
+  <!-- MODAL 2: FLOWER BOUQUET & FLIPPING POLAROID -->
+  <div id="flowers-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <span class="close-modal" id="close-flowers">&times;</span>
+      <h3 class="cursive-heading">Pick a flower for a memory 🌻</h3>
+      
+      <div class="flower-bouquet">
+        <span class="interactive-flower" data-photo="images/photo1.jpg" data-date="June 15, 2024" data-msg="The day we spent all afternoon laughing by the shore!">🌻</span>
+        <span class="interactive-flower" data-photo="images/photo2.jpg" data-date="August 23, 2025" data-msg="Our favorite coffee spot date. I miss these days so much!" >🌹</span>
+        <span class="interactive-flower" data-photo="images/photo3.jpg" data-date="December 31, 2025" data-msg="New Year's Eve midnight celebration. Best start to the year!">🌷</span>
+      </div>
+
+      <!-- Flipping 3D Polaroid Card -->
+      <div id="polaroid-wrapper" class="polaroid-3d-container hidden">
+        <div class="polaroid-inner-card" id="polaroid-card">
+          <!-- Front Face -->
+          <div class="polaroid-face polaroid-front">
+            <img id="polaroid-img" src="" alt="Memory Photo" />
+            <p class="flip-hint-text">👆 click card to flip!</p>
+          </div>
+          <!-- Back Face -->
+          <div class="polaroid-face polaroid-back">
+            <p class="polaroid-date-text" id="polaroid-date"></p>
+            <p class="polaroid-msg-text" id="polaroid-msg"></p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
