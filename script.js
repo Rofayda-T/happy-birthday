@@ -116,16 +116,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkIfFinished() {
     if (burgerCount === 0 && friesCount === 0 && drinkCount === 0) {
-      // Show Picture 2 (photo8.jpg) when everything is finished
       showPicturePopup('Images/photo8.jpeg');
     }
   }
 
-  // Open Shake Shack Modal + Pop up First Photo
   if (shakeShackBtn && cakeModal) {
     shakeShackBtn.addEventListener("click", () => {
       cakeModal.classList.remove("hidden");
-      showPicturePopup('Images/photo7.jpeg'); // Pops up photo 1 before interaction
+      showPicturePopup('Images/photo7.jpeg');
     });
   }
 
@@ -133,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
     closeCake.addEventListener("click", () => cakeModal.classList.add("hidden"));
   }
 
-  // Food Click Handlers
   if (burgerBites.length > 0) {
     burgerBites.forEach((bite) => {
       bite.addEventListener("click", (e) => {
@@ -229,44 +226,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const cameraBody = document.getElementById("camera-body");
   const videoFrame = document.getElementById("video-display-frame");
   const cameraVideo = document.getElementById("camera-video");
-  const bgMusic = document.getElementById('bg-music');
   const redShutter = document.getElementById('red-shutter');
   const closeCamBtn = document.getElementById('close-cam-btn');
-  const camWindow = document.getElementById('cam-window'); // Vintage camera window/modal
-  const camVideo = document.getElementById('cam-video');   // The video inside the camera display
+  const camWindow = document.getElementById('cam-window');
+  const camVideo = document.getElementById('cam-video');
 
-
-  redShutter.addEventListener('click', () => {
-    // Pause background music (it automatically preserves current position)
-    if (!bgMusic.paused) {
+  // Guarded Red Shutter Click Listener
+  if (redShutter) {
+    redShutter.addEventListener('click', () => {
+      if (bgMusic && !bgMusic.paused) {
         bgMusic.pause();
-    }
+      }
 
-    // Display the vintage camera window
-    camWindow.style.display = 'block'; // or add an 'active' class depending on your CSS
+      if (camWindow) {
+        camWindow.style.display = 'block';
+      }
 
-    // Play the camera video (optional/recommended)
-    if (camVideo) {
-        camVideo.currentTime = 0; // reset video to start if needed
-        camVideo.play();
-    }
-});
-
-// --- 2. When clicking the Close Button (Close Vintage Cam) ---
-closeCamBtn.addEventListener('click', () => {
-    // Pause and reset the video
-    if (camVideo) {
-        camVideo.pause();
-    }
-
-    // Hide the vintage camera window
-    camWindow.style.display = 'none';
-
-    // Resume background music from where it stopped
-    bgMusic.play().catch(error => {
-        console.log("Autoplay check or audio playback error:", error);
+      if (camVideo) {
+        camVideo.currentTime = 0;
+        camVideo.play().catch(() => {});
+      }
     });
-}); 
+  }
+
+  // Guarded Close Button Click Listener
+  if (closeCamBtn) {
+    closeCamBtn.addEventListener('click', () => {
+      if (camVideo) {
+        camVideo.pause();
+      }
+
+      if (camWindow) {
+        camWindow.style.display = 'none';
+      }
+
+      if (bgMusic) {
+        bgMusic.play().catch(error => {
+          console.log("Autoplay check or audio playback error:", error);
+        });
+      }
+    });
+  }
+
   if (cameraTrigger && cameraModal) {
     cameraTrigger.addEventListener("click", () => {
       cameraModal.classList.remove("hidden");
