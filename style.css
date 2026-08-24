@@ -78,7 +78,7 @@ body {
   text-align: center;
   cursor: pointer;
   position: relative;
-  z-index: 10;
+  z-index: 100;
   pointer-events: auto;
 }
 
