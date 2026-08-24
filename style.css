@@ -719,3 +719,53 @@ body {
   z-index: 2;
   background: rgba(0, 0, 0, 0.2);
 }
+/* ==========================================
+   MEMORIES PAGE STYLING
+   ========================================== */
+
+body.memories-page {
+  background: #fdf8f5; /* Soft aesthetic background */
+  min-height: 100vh;
+  margin: 0;
+  padding: 30px 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header & Back Button */
+.memories-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.back-btn {
+  text-decoration: none;
+  color: #a85d65;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: opacity 0.2s ease;
+}
+
+.back-btn:hover {
+  opacity: 0.7;
+}
+
+.memories-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #4a3e3d;
+  margin: 0;
+}
+
+/* Canva Container */
+.canva-embed-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
