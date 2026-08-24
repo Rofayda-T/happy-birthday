@@ -91,6 +91,56 @@ document.addEventListener("DOMContentLoaded", () => {
   let burgerCount = burgerBites.length;
   let friesCount = fryBatches.length;
   let drinkCount = sipLayers.length;
+  // State variables
+let foodBitesLeft = 3;
+let hasSeenIntro = false;
+
+// Image URLs and captions (Replace these with your actual image paths)
+const introImage = "path/to/your-intro-image.jpg";
+const finishedImage = "path/to/your-finished-image.jpg";
+
+// DOM Elements
+const cakeBtn = document.getElementById("cake-btn");
+const foodCountDisplay = document.getElementById("food-count");
+const modal = document.getElementById("picture-modal");
+const modalImg = document.getElementById("modal-img");
+const modalCaption = document.getElementById("modal-caption");
+const closeModalBtn = document.getElementById("close-modal-btn");
+
+// Function to open the pop-up modal
+function showModal(imageSrc, captionText) {
+  modalImg.src = imageSrc;
+  modalCaption.textContent = captionText;
+  modal.classList.remove("hidden");
+}
+
+// Function to close the pop-up modal
+closeModalBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+// Cake Button Click Logic
+cakeBtn.addEventListener("click", () => {
+  // Step 1: First click shows the custom picture
+  if (!hasSeenIntro) {
+    showModal(introImage, "Here is your Burger Cake!");
+    hasSeenIntro = true; // Mark as seen so future clicks trigger the eating function
+    return;
+  }
+
+  // Step 2: Normal button behavior (eating the food)
+  if (foodBitesLeft > 0) {
+    foodBitesLeft--;
+    foodCountDisplay.textContent = foodBitesLeft;
+
+    // Step 3: Check if the food is finished
+    if (foodBitesLeft === 0) {
+      showModal(finishedImage, "You finished the food!");
+      cakeBtn.disabled = true; // Disable button after finishing
+      cakeBtn.textContent = "Finished!";
+    }
+  }
+});
 
   if (shakeShackBtn && cakeModal) {
     shakeShackBtn.addEventListener("click", () => cakeModal.classList.remove("hidden"));
