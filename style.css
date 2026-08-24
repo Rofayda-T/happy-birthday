@@ -302,6 +302,36 @@ body {
 .mini-polaroid-stack img { width: 100%; border-radius: 8px; margin-top: 15px; }
 .polaroid-caption { font-family: 'Caveat', cursive; text-align: center; margin-top: 5px; }
 
+
+/* ==========================================
+   FORCE RESTORE ORIGINAL TOP HERO BANNER
+   ========================================== */
+.hero-banner {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-bottom: 30px !important;
+}
+
+.hero-banner .hero-image-wrapper {
+  width: 100% !important;
+  height: 350px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.hero-banner .hero-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* ==========================================
+   ONLY SQUARE THE BOTTOM MEMORY PHOTO
+   ========================================== */
 .mini-polaroid-stack {
   display: flex;
   flex-direction: column;
@@ -311,8 +341,8 @@ body {
 }
 
 .square-photo-wrapper {
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   border-radius: 12px;
   overflow: hidden;
   margin: 0 auto;
@@ -325,7 +355,6 @@ body {
   object-fit: cover;
   object-position: center;
 }
-
 /* ==========================================
    LIVE LYRICS SCREEN STYLING
    ========================================== */
