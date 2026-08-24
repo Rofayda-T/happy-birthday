@@ -1,59 +1,54 @@
-<!-- demo.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Vintage Camera Video</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      font-family: sans-serif;
-    }
-    
-    .back-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 10px 18px;
-      background-color: #e74c3c;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background-color 0.2s ease;
-    }
+  <meta charset="UTF-8">
+  <title>Vintage Camera Video</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+    }
+    
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 18px;
+      background-color: #e74c3c;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
 
-    .back-btn:hover {
-      background-color: #c0392b;
-    }
-
-    iframe {
-      width: 90%;
-      max-width: 800px;
-      height: 450px;
-      border: none;
-      border-radius: 8px;
-    }
-  </style>
+    iframe {
+      width: 90%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Close / Back Button -->
-  <a href="index.html" class="back-btn">← Back to Birthday Page</a>
+  <!-- Back Link -->
+  <a href="index.html" class="back-btn">← Back to Birthday Page</a>
 
-  <!-- YouTube Embed -->
-  <iframe 
-    src="https://www.youtube.com/embed/TDjGgkxwfms?si=X377eoYOCWrXfhHB" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
+  <!-- YouTube Embed Player -->
+  <iframe 
+    src="https://www.youtube.com/embed/TDjGgkxwfms?si=X377eoYOCWrXfhHB" 
+    title="Vintage Camera Video" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
 
 </body>
 </html>
