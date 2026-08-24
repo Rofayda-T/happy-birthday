@@ -131,6 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (shakeShackBtn && cakeModal) {
     shakeShackBtn.addEventListener("click", () => cakeModal.classList.remove("hidden"));
   }
+  showPicturePopup('Images/photo7.jpeg'); // Adjust image path/filename as needed
+    });
+  }
   if (closeCake && cakeModal) {
     closeCake.addEventListener("click", () => cakeModal.classList.add("hidden"));
   }
