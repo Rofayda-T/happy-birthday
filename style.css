@@ -308,7 +308,9 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-}
+/* ==========================================
+   FORCE RESTORE TOP HERO BANNER & TEXT OVERLAY
+   ========================================== */
 .hero-banner {
   display: block !important;
   width: 100% !important;
@@ -330,6 +332,18 @@ body {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
+}
+
+/* BRINGS BACK THE OVERLAY TEXT */
+.hero-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  color: white !important;
+  z-index: 2 !important;
 }
 
 /* ==========================================
