@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (openEnvelopeBtn) {
     openEnvelopeBtn.addEventListener("click", () => {
       // Play Background Audio
+      sessionStorage.setItem("envelopeOpened", "true");
       if (bgMusic) {
         bgMusic.play().catch(() => console.log("Audio autoplay restriction handled"));
       }
