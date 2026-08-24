@@ -61,6 +61,9 @@ body {
 
 .macbook-body { padding: 30px 20px; }
 .hidden { display: none !important; }
+.main-screen-2 {
+  background: url('paper-texture.jpg') center/cover no-repeat;
+}
 
 /* Envelope Screen Container */
 .screen-center {
