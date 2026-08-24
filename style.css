@@ -769,3 +769,27 @@ body.memories-page {
   max-width: 800px;
   margin: 0 auto;
 }
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spreads button to the left and title to the right/center */
+  gap: 20px;                     /* Ensures minimum space between them */
+  padding: 15px 25px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  /* Optional shadow/styling */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.back-btn {
+  text-decoration: none;
+  color: #b04b4b; /* Match your preferred link/button color */
+  font-weight: 600;
+  white-space: nowrap; /* Prevents text wrapping onto multiple lines */
+}
+
+.page-title {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #333333;
+}
