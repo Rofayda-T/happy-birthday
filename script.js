@@ -73,19 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ==========================================
-  // 3. MODAL 1: MEMORIES PHOTO ALBUM
-  // ==========================================
-  const memoriesTrigger = document.getElementById("memories-modal-trigger");
-  const memoriesModal = document.getElementById("memories-modal");
-  const closeMemories = document.getElementById("close-memories");
-
-  if (memoriesTrigger && memoriesModal) {
-    memoriesTrigger.addEventListener("click", () => memoriesModal.classList.remove("hidden"));
-  }
-  if (closeMemories && memoriesModal) {
-    closeMemories.addEventListener("click", () => memoriesModal.classList.add("hidden"));
-  }
+  
 
   // ==========================================
   // 4. MODAL 2: SHAKE SHACK LOGIC
