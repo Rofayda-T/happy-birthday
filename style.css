@@ -308,58 +308,11 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-/* ==========================================
-   FORCE RESTORE TOP HERO BANNER & TEXT OVERLAY
-   ========================================== */
-.hero-banner {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin-bottom: 30px !important;
-}
-
-.hero-banner .hero-image-wrapper {
-  width: 100% !important;
-  height: 350px !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  position: relative !important;
-  margin: 0 !important;
-  box-shadow: none !important;
-}
-
-.hero-banner .hero-img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-}
-
-/* BRINGS BACK THE OVERLAY TEXT */
-.hero-overlay {
-  position: absolute !important;
-  inset: 0 !important;
-  background: rgba(0, 0, 0, 0.35) !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  color: white !important;
-  z-index: 2 !important;
-}
-
-/* ==========================================
-   ONLY SQUARE THE BOTTOM MEMORY PHOTO
-   ========================================== */
-.mini-polaroid-stack {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 .square-photo-wrapper {
-  width: 240px;
-  height: 240px;
+  width: 220px;
+  height: 220px;
   border-radius: 12px;
   overflow: hidden;
   margin: 0 auto;
