@@ -10,11 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (openEnvelopeBtn) {
     openEnvelopeBtn.addEventListener("click", () => {
-      // Play Background Audio
-      sessionStorage.setItem("envelopeOpened", "true");
-      if (bgMusic) {
-        bgMusic.play().catch(() => console.log("Audio autoplay restriction handled"));
-      }
+  // Save flag in browser session so we know the envelope was opened
+  sessionStorage.setItem("envelopeOpened", "true");
+
+  if (bgMusic) {
+    bgMusic.play().catch(() => console.log("Audio autoplay restriction handled"));
+  }
+
+  if (typeof confetti === "function") {
+    confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+  }
 
       // Trigger Confetti
       if (typeof confetti === "function") {
