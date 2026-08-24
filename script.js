@@ -96,8 +96,8 @@ let foodBitesLeft = 3;
 let hasSeenIntro = false;
 
 // Image URLs and captions (Replace these with your actual image paths)
-const introImage = "path/to/your-intro-image.jpg";
-const finishedImage = "path/to/your-finished-image.jpg";
+const introImage = "Images/photo7.jpeg";
+const finishedImage = "Images/photo8.jpeg";
 
 // DOM Elements
 const cakeBtn = document.getElementById("cake-btn");
