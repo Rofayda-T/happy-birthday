@@ -93,73 +93,97 @@ document.addEventListener("DOMContentLoaded", () => {
   let drinkCount = sipLayers.length;
  // Function to show any picture in the popup
 function showPicturePopup(imagePath) {
-  const modal = document.getElementById('Photo7.jpeg');
-  const modalImg = document.getElementById('Photo8.jpeg');
+  const modal = document.getElementById('image-modal');
+  const modalImg = document.getElementById('modal-img');
   
   modalImg.src = imagePath;
   modal.classList.remove('hidden');
 }
 
 // Event listener to close the modal when clicking the X or overlay
-document.getElementById('modal-close-btn').addEventListener('click', () => {
-  document.getElementById('image-modal').classList.add('hidden');
-});
-
-document.getElementById('image-modal').addEventListener('click', (e) => {
-  if (e.target.id === 'image-modal') {
-    document.getElementById('image-modal').classList.add('hidden');
+// 1. Helper function to check if all items are finished
+function checkIfFinished() {
+  if (burgerCount === 0 && friesCount === 0 && drinkCount === 0) {
+    // Show Picture 2 (photo8.jpg) when everything is finished
+    showPicturePopup('Images/photo8.jpg');
+    
+    // Add any other completion logic here (e.g. sound effects, celebratory text)
   }
-});
+}
 
-  if (shakeShackBtn && cakeModal) {
-    shakeShackBtn.addEventListener("click", () => cakeModal.classList.remove("hidden"));
-  }
-  if (closeCake && cakeModal) {
-    closeCake.addEventListener("click", () => cakeModal.classList.add("hidden"));
-  }
+// 2. Event Listeners for Closing Modal
+const modalCloseBtn = document.getElementById('modal-close-btn');
+const imageModal = document.getElementById('image-modal');
 
-  if (burgerBites) {
-    burgerBites.forEach((bite) => {
-      bite.addEventListener("click", (e) => {
-        if (e.target.style.display !== "none") {
-          e.target.style.display = "none";
-          burgerCount--;
-          if (burgerStatus) {
-            burgerStatus.textContent = burgerCount > 0 ? `${burgerCount} bites left` : "Burger finished! 😋";
-          }
+if (modalCloseBtn) {
+  modalCloseBtn.addEventListener('click', () => {
+    imageModal.classList.add('hidden');
+  });
+}
+
+if (imageModal) {
+  imageModal.addEventListener('click', (e) => {
+    if (e.target.id === 'image-modal') {
+      imageModal.classList.add('hidden');
+    }
+  });
+}
+
+// 3. Shake Shack & Cake Modal Listeners
+if (shakeShackBtn && cakeModal) {
+  shakeShackBtn.addEventListener("click", () => cakeModal.classList.remove("hidden"));
+}
+if (closeCake && cakeModal) {
+  closeCake.addEventListener("click", () => cakeModal.classList.add("hidden"));
+}
+
+// 4. Burger Bites Listener
+if (burgerBites) {
+  burgerBites.forEach((bite) => {
+    bite.addEventListener("click", (e) => {
+      if (e.target.style.display !== "none") {
+        e.target.style.display = "none";
+        burgerCount--;
+        if (burgerStatus) {
+          burgerStatus.textContent = burgerCount > 0 ? `${burgerCount} bites left` : "Burger finished! 😋";
         }
-      });
+        checkIfFinished(); // Check total count
+      }
     });
-  }
+  });
+}
 
-  if (fryBatches) {
-    fryBatches.forEach((batch) => {
-      batch.addEventListener("click", (e) => {
-        if (e.target.style.display !== "none") {
-          e.target.style.display = "none";
-          friesCount--;
-          if (friesStatus) {
-            friesStatus.textContent = friesCount > 0 ? `${friesCount} handfuls left` : "Fries all gone! 🍟";
-          }
+// 5. Fry Batches Listener
+if (fryBatches) {
+  fryBatches.forEach((batch) => {
+    batch.addEventListener("click", (e) => {
+      if (e.target.style.display !== "none") {
+        e.target.style.display = "none";
+        friesCount--;
+        if (friesStatus) {
+          friesStatus.textContent = friesCount > 0 ? `${friesCount} handfuls left` : "Fries all gone! 🍟";
         }
-      });
+        checkIfFinished(); // Check total count
+      }
     });
-  }
+  });
+}
 
-  if (sipLayers) {
-    sipLayers.forEach((layer) => {
-      layer.addEventListener("click", (e) => {
-        if (e.target.style.display !== "none") {
-          e.target.style.display = "none";
-          drinkCount--;
-          if (drinkStatus) {
-            drinkStatus.textContent = drinkCount > 0 ? `${drinkCount} sips left` : "Cup empty! 🥤";
-          }
+// 6. Sip Layers Listener
+if (sipLayers) {
+  sipLayers.forEach((layer) => {
+    layer.addEventListener("click", (e) => {
+      if (e.target.style.display !== "none") {
+        e.target.style.display = "none";
+        drinkCount--;
+        if (drinkStatus) {
+          drinkStatus.textContent = drinkCount > 0 ? `${drinkCount} sips left` : "Cup empty! 🥤";
         }
-      });
+        checkIfFinished(); // Check total count
+      }
     });
-  }
-
+  });
+}
   // ==========================================
   // 5. MODAL 3: BOUQUET & POLAROID LOGIC
   // ==========================================
