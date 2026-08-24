@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentTime = bgMusic.currentTime;
       let activeIndex = -1;
 
-      // Find the current lyric line based on timestamp
       lyricLines.forEach((line, index) => {
         const time = parseFloat(line.getAttribute("data-time"));
         if (currentTime >= time) {
@@ -50,18 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // ONLY trigger scroll inside the lyrics box if active line changes
       if (activeIndex !== -1 && activeIndex !== currentActiveIndex) {
         currentActiveIndex = activeIndex;
 
-        // Remove active class from all lines
         lyricLines.forEach((line) => line.classList.remove("active"));
 
-        // Highlight current line
         const activeLine = lyricLines[activeIndex];
         activeLine.classList.add("active");
 
-        // Scroll inside lyrics container without stealing page scroll
         const containerTop = lyricsScreen.offsetTop;
         const lineTop = activeLine.offsetTop;
 
@@ -74,44 +69,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
-  // 4. MODAL 2: SHAKE SHACK LOGIC & POPUP
+  // 3. IMAGE POPUP MODAL HELPER
   // ==========================================
-  const shakeShackBtn = document.getElementById("cake-modal-trigger");
-  const cakeModal = document.getElementById("cake-modal");
-  const closeCake = document.getElementById("close-cake");
-  const burgerBites = document.querySelectorAll(".burger-bite");
-  const fryBatches = document.querySelectorAll(".fry-batch");
-  const sipLayers = document.querySelectorAll(".sip-layer");
-  const burgerStatus = document.getElementById("burger-status");
-  const friesStatus = document.getElementById("fries-status");
-  const drinkStatus = document.getElementById("drink-status");
+  const imageModal = document.getElementById('image-modal');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
 
-  let burgerCount = burgerBites.length;
-  let friesCount = fryBatches.length;
-  let drinkCount = sipLayers.length;
-
-  // Helper function to show any picture in the modal popup
   function showPicturePopup(imagePath) {
-    const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-img');
     
-    if (modal && modalImg) {
+    if (imageModal && modalImg) {
       modalImg.src = imagePath;
-      modal.classList.remove('hidden');
+      imageModal.classList.remove('hidden');
     }
   }
-
-  // Check if all items are finished
-  function checkIfFinished() {
-    if (burgerCount === 0 && friesCount === 0 && drinkCount === 0) {
-      // Show Picture 2 (photo8.jpg) when everything is finished
-      showPicturePopup('Images/photo8.jpeg');
-    }
-  }
-
-  // Event Listeners for Closing Modal
-  const modalCloseBtn = document.getElementById('modal-close-btn');
-  const imageModal = document.getElementById('image-modal');
 
   if (modalCloseBtn && imageModal) {
     modalCloseBtn.addEventListener('click', () => {
@@ -127,18 +97,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Shake Shack & Cake Modal Trigger Listeners
-  if (shakeShackBtn && cakeModal) {
-    shakeShackBtn.addEventListener("click", () => cakeModal.classList.remove("hidden"));
+  // ==========================================
+  // 4. MODAL 2: SHAKE SHACK LOGIC
+  // ==========================================
+  const shakeShackBtn = document.getElementById("cake-modal-trigger");
+  const cakeModal = document.getElementById("cake-modal");
+  const closeCake = document.getElementById("close-cake");
+  const burgerBites = document.querySelectorAll(".burger-bite");
+  const fryBatches = document.querySelectorAll(".fry-batch");
+  const sipLayers = document.querySelectorAll(".sip-layer");
+  const burgerStatus = document.getElementById("burger-status");
+  const friesStatus = document.getElementById("fries-status");
+  const drinkStatus = document.getElementById("drink-status");
+
+  let burgerCount = burgerBites.length;
+  let friesCount = fryBatches.length;
+  let drinkCount = sipLayers.length;
+
+  function checkIfFinished() {
+    if (burgerCount === 0 && friesCount === 0 && drinkCount === 0) {
+      // Show Picture 2 (photo8.jpg) when everything is finished
+      showPicturePopup('Images/photo8.jpeg');
+    }
   }
-  showPicturePopup('Images/photo7.jpeg'); // Adjust image path/filename as needed
+
+  // Open Shake Shack Modal + Pop up First Photo
+  if (shakeShackBtn && cakeModal) {
+    shakeShackBtn.addEventListener("click", () => {
+      cakeModal.classList.remove("hidden");
+      showPicturePopup('Images/photo7.jpeg'); // Pops up photo 1 before interaction
     });
   }
+
   if (closeCake && cakeModal) {
     closeCake.addEventListener("click", () => cakeModal.classList.add("hidden"));
   }
 
-  // Burger Bites Listener (Fixed using e.currentTarget and checking display status)
+  // Food Click Handlers
   if (burgerBites.length > 0) {
     burgerBites.forEach((bite) => {
       bite.addEventListener("click", (e) => {
@@ -155,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Fry Batches Listener
   if (fryBatches.length > 0) {
     fryBatches.forEach((batch) => {
       batch.addEventListener("click", (e) => {
@@ -172,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Sip Layers Listener
   if (sipLayers.length > 0) {
     sipLayers.forEach((layer) => {
       layer.addEventListener("click", (e) => {
