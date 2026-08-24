@@ -298,3 +298,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// Add this at the bottom of your main script file
+window.addEventListener('pageshow', (event) => {
+  const bgMusic = document.getElementById('bg-music');
+  
+  // If returning via browser back button or navigation history
+  if (bgMusic && bgMusic.paused) {
+    bgMusic.play().catch(error => {
+      console.log("Autoplay check on page return:", error);
+    });
+  }
+});
