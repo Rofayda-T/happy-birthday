@@ -305,14 +305,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 // Add this at the bottom of your main script file
-window.addEventListener('pageshow', () => {
-  const bgMusic = document.getElementById('bg-music');
+// Automatically check state when returning from demo.html
+window.addEventListener('pageshow', (event) => {
+  // event.persisted is true when navigating back/forward from cache
   const isOpened = sessionStorage.getItem("envelopeOpened") === "true";
+  const bgMusic = document.getElementById('bg-music');
 
-  // Only auto-resume if the user has ALREADY opened the envelope previously
-  if (isOpened && bgMusic && bgMusic.paused) {
+  // Only attempt play if the envelope was already opened AND page loaded from back navigation
+  if (event.persisted && isOpened && bgMusic && bgMusic.paused) {
     bgMusic.play().catch(error => {
-      console.log("Autoplay check on return:", error);
+      console.log("Audio resume error:", error);
     });
   }
 });
