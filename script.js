@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function checkIfFinished() {
     if (burgerCount === 0 && friesCount === 0 && drinkCount === 0) {
       // Show Picture 2 (photo8.jpg) when everything is finished
-      showPicturePopup('Images/photo8.jpg');
+      showPicturePopup('Images/photo8.jpeg');
     }
   }
 
